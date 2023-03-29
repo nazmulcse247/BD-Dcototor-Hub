@@ -8,14 +8,18 @@ import android.os.Looper
 import com.genius.multiprogressbar.MultiProgressBar
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.Utils.ViewUtils
+import com.homairaahmed.bddoctorhub.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySplashBinding
 
     private lateinit var multiProgressBar: MultiProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         multiProgressBar = findViewById<MultiProgressBar>(R.id.m_progress_bar)
 

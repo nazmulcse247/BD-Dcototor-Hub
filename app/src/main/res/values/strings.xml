@@ -2,4 +2,6 @@
     <string name="app_name">DocAppoint</string>
     <string name="homaira_ahmed_212108">Homaira Ahmed (212108)</string>
     <string name="developed_by">Developed By</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
