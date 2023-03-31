@@ -13,4 +13,8 @@
         <item name="android:statusBarColor">@color/green_A700</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="GreenButtonThemeOverlay">
+        <item name="colorPrimary">@color/green_A700</item>
+    </style>
 </resources>

@@ -4,4 +4,8 @@
     <string name="developed_by">Developed By</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="email">example@gmail.com</string>
+    <string name="forgot_your_password">Forgot Your Password ?</string>
+    <string name="don_t_have_account">Don\'t have account ?</string>
 </resources>
