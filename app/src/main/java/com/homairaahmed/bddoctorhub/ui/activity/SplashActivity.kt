@@ -3,11 +3,9 @@ package com.homairaahmed.bddoctorhub.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.genius.multiprogressbar.MultiProgressBar
 import com.homairaahmed.bddoctorhub.R
-import com.homairaahmed.bddoctorhub.Utils.ViewUtils
+import com.homairaahmed.bddoctorhub.utils.ViewUtils
 import com.homairaahmed.bddoctorhub.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
