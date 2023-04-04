@@ -1,7 +1,9 @@
 package com.homairaahmed.bddoctorhub.viewmodel
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+
 
 class AuthViewModel() : ViewModel() {
 
@@ -9,7 +11,13 @@ class AuthViewModel() : ViewModel() {
     val userPass = MutableLiveData<String>()
 
 
-    fun loginDataValidation(): Boolean {
-        return !userName.value.isNullOrEmpty() && !userPass.value.isNullOrEmpty()
+    fun loginDataValidation(): Int {
+        if (userName.value.isNullOrEmpty()){
+            return 1
+        }
+        if (userPass.value.isNullOrEmpty()){
+            return 2
+        }
+        return 200
     }
 }
