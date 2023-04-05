@@ -64,14 +64,16 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun loginDataValidation() : Boolean{
+    private fun loginDataValidation() : Boolean {
         when(authViewModel.loginDataValidation()){
             1 -> {
-                Toast.makeText(requireContext(), "Please enter your username", Toast.LENGTH_SHORT).show()
+                binding.etUserName.setError("Please enter your username")
+                binding.etUserName.requestFocus()
                 false
             }
             2 -> {
-                Toast.makeText(requireContext(), "Please enter your password", Toast.LENGTH_SHORT).show()
+                binding.etUserPassword.setError("Please enter your password")
+                binding.etUserPassword.requestFocus()
                 false
             }
         }
