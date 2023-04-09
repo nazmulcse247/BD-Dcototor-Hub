@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "289615726494",
+    "project_id": "bd-doctor-app",
+    "storage_bucket": "bd-doctor-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289615726494:android:225bb94d4adae1e415f88f",
+        "android_client_info": {
+          "package_name": "com.homairaahmed.bddoctorhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289615726494-1n7455hff0pl2d1k31amhv1t4m77mt7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf7kHbe5MIoYcn_c_YSv3hFfQhtQQZBYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289615726494-1n7455hff0pl2d1k31amhv1t4m77mt7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

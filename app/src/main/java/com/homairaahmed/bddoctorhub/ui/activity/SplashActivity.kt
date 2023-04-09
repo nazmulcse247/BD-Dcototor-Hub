@@ -7,7 +7,9 @@ import com.genius.multiprogressbar.MultiProgressBar
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.utils.ViewUtils
 import com.homairaahmed.bddoctorhub.databinding.ActivitySplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding

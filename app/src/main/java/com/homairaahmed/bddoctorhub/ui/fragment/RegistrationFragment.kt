@@ -5,8 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import com.homairaahmed.bddoctorhub.R
+import com.homairaahmed.bddoctorhub.data.Resource
+import com.homairaahmed.bddoctorhub.data.User
 import com.homairaahmed.bddoctorhub.databinding.FragmentRegistrationBinding
+import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 /**
@@ -14,9 +24,13 @@ import com.homairaahmed.bddoctorhub.databinding.FragmentRegistrationBinding
  * Use the [RegistrationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 
     private lateinit var binding: FragmentRegistrationBinding
+    private lateinit var authViewModel: AuthViewModel
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +49,43 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
+        lifecycle.coroutineScope.launchWhenCreated {
+            authViewModel.user.collect {
+                if (it.isLoading) {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                if (it.error.isNotBlank()) {
+                    binding.progressBar.visibility = View.GONE
+                    //this@MainActivity.displayToast(it.error)
+                    Toast.makeText(context, it.error, Toast.LENGTH_SHORT).show()
+                }
+                it.data?.let {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+        binding.btnSignUp.setOnClickListener{
+            val user = User(
+                name = "Jahid Hasan",
+                image = "",
+                email = "example@gmal.com",
+                active = true,
+                address = "Dhaka, Bangladesh"
+            )
+
+            authViewModel.register(binding.etUserName.text.toString(), binding.etUserName.text.toString(), user)
+
+
+
+        }
+
     }
+
+
 
 }
