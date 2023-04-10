@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 class RegistrationFragment : Fragment() {
 
     private lateinit var binding: FragmentRegistrationBinding
-    private lateinit var authViewModel: AuthViewModel
+    private val authViewModel: AuthViewModel by viewModels()
 
 
 
@@ -49,7 +49,7 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
 
         lifecycle.coroutineScope.launchWhenCreated {
             authViewModel.user.collect {
@@ -78,7 +78,7 @@ class RegistrationFragment : Fragment() {
                 address = "Dhaka, Bangladesh"
             )
 
-            authViewModel.register(binding.etUserName.text.toString(), binding.etUserName.text.toString(), user)
+            authViewModel.register(binding.etUserEmail.text.toString(), binding.etUserPassword.text.toString(), user)
 
 
 

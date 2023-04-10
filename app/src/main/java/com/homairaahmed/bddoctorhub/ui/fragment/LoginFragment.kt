@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentLoginBinding
@@ -37,10 +38,28 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         onClickListener()
 
+        lifecycle.coroutineScope.launchWhenCreated {
+            authViewModel.user.collect {
+                if (it.isLoading) {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                if (it.error.isNotBlank()) {
+                    binding.progressBar.visibility = View.GONE
+                    //this@MainActivity.displayToast(it.error)
+                    Toast.makeText(context, it.error, Toast.LENGTH_SHORT).show()
+                }
+                it.data?.let {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         binding.btnLogin.setOnClickListener(){
             authViewModel.userName.value = binding.etUserName.text.toString()
             authViewModel.userPass.value = binding.etUserPassword.text.toString()
             if (loginDataValidation()){
+                authViewModel.login(binding.etUserName.text.toString(), binding.etUserPassword.text.toString())
 
             }
         }

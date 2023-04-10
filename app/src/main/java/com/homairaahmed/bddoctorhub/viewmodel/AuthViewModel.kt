@@ -9,13 +9,14 @@ import com.homairaahmed.bddoctorhub.data.User
 import com.homairaahmed.bddoctorhub.repository.AuthRepository
 import com.homairaahmed.bddoctorhub.utils.networkstate.AuthState
 import com.homairaahmed.bddoctorhub.utils.networkstate.UserState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-
+@HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
