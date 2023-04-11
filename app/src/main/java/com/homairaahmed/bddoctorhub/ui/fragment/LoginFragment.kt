@@ -1,19 +1,19 @@
 package com.homairaahmed.bddoctorhub.ui.fragment
 
 import android.os.Bundle
-import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentLoginBinding
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         onClickListener()
 
-        lifecycle.coroutineScope.launchWhenCreated {
+        lifecycleScope.launch {
             authViewModel.user.collect {
                 if (it.isLoading) {
                     binding.progressBar.visibility = View.VISIBLE
@@ -55,14 +55,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-        binding.btnLogin.setOnClickListener(){
-            authViewModel.userName.value = binding.etUserName.text.toString()
-            authViewModel.userPass.value = binding.etUserPassword.text.toString()
-            if (loginDataValidation()){
-                authViewModel.login(binding.etUserName.text.toString(), binding.etUserPassword.text.toString())
 
-            }
-        }
 
 
 
@@ -75,10 +68,10 @@ class LoginFragment : Fragment() {
 
 
         binding.btnLogin.setOnClickListener(){
-            authViewModel.userName.value = binding.etUserName.text.toString()
+            authViewModel.userEmail.value = binding.etUserName.text.toString()
             authViewModel.userPass.value = binding.etUserPassword.text.toString()
             if (loginDataValidation()){
-
+                authViewModel.login()
             }
         }
     }

@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.homairaahmed.bddoctorhub.R
-import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.data.User
 import com.homairaahmed.bddoctorhub.databinding.FragmentRegistrationBinding
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
@@ -53,7 +51,7 @@ class RegistrationFragment : Fragment() {
 
         onClickListener()
 
-        lifecycle.coroutineScope.launchWhenCreated {
+        lifecycleScope.launch{
             authViewModel.user.collect {
                 if (it.isLoading) {
                     binding.progressBar.visibility = View.VISIBLE
@@ -71,25 +69,57 @@ class RegistrationFragment : Fragment() {
         }
 
 
-        binding.btnSignUp.setOnClickListener{
-            val user = User(
-                name = "Jahid Hasan",
-                image = "",
-                email = "example@gmal.com",
-                active = true,
-                address = "Dhaka, Bangladesh"
-            )
 
-            authViewModel.register(binding.etUserEmail.text.toString(), binding.etUserPassword.text.toString(), user)
-
-
-
-        }
 
     }
 
     private fun onClickListener() {
-        TODO("Not yet implemented")
+        binding.tvAlreadyHaveAccountSingIn.setOnClickListener {
+            findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+        }
+
+        binding.btnSignUp.setOnClickListener{
+
+            val user = User(
+                name = binding.etUserName.text.toString(),
+                image = "",
+                email = binding.etUserEmail.text.toString(),
+                active = true,
+                address = "Dhaka, Bangladesh"
+            )
+            authViewModel.users = user
+            authViewModel.userName.value = binding.etUserName.text.toString()
+            authViewModel.userEmail.value = binding.etUserEmail.text.toString()
+            authViewModel.userPass.value = binding.etUserPassword.text.toString()
+
+            if (registerDataValidation()) {
+
+                authViewModel.register()
+
+            }
+        }
+
+    }
+
+    fun registerDataValidation(): Boolean {
+        when(authViewModel.registerDataValidation()){
+            1 -> {
+                binding.etUserName.setError("Please enter your username")
+                binding.etUserName.requestFocus()
+                false
+            }
+            2 -> {
+                binding.etUserPassword.setError("Please enter your password")
+                binding.etUserPassword.requestFocus()
+                false
+            }
+            3 -> {
+                binding.etUserEmail.setError("Please enter your email")
+                binding.etUserEmail.requestFocus()
+                false
+            }
+        }
+        return true
     }
 
 

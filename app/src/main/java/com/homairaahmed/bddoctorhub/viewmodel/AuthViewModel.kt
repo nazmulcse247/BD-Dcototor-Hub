@@ -22,7 +22,9 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
 
     val userName = MutableLiveData<String>()
+    val userEmail = MutableLiveData<String>()
     val userPass = MutableLiveData<String>()
+    var users = User()
 
     private val _user = MutableStateFlow(AuthState())
     val user: StateFlow<AuthState> = _user
@@ -30,8 +32,8 @@ class AuthViewModel @Inject constructor(
     private val _userData = MutableStateFlow(UserState())
     val userData: StateFlow<UserState> = _userData
 
-    fun login(email: String, password: String) {
-        authRepository.login(email, password).onEach {
+    fun login() {
+        authRepository.login(userEmail.value.toString(), userPass.value.toString()).onEach {
             when (it) {
                 is Resource.Loading -> {
                     _user.value = AuthState(isLoading = true)
@@ -46,8 +48,8 @@ class AuthViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun register(email: String, password: String, user: User) {
-        authRepository.register(email, password, user).onEach {
+    fun register() {
+        authRepository.register(userEmail.value.toString(), userPass.value.toString(), users).onEach {
             when (it) {
                 is Resource.Loading -> {
                     _user.value = AuthState(isLoading = true)
@@ -96,11 +98,24 @@ class AuthViewModel @Inject constructor(
     }
 
     fun loginDataValidation(): Int {
-        if (userName.value.isNullOrEmpty()){
+        if (userEmail.value.isNullOrEmpty()){
             return 1
         }
         if (userPass.value.isNullOrEmpty()){
             return 2
+        }
+        return 200
+    }
+
+    fun registerDataValidation(): Int {
+        if (userName.value.isNullOrEmpty()){
+            return 1
+        }
+        if (userEmail.value.isNullOrEmpty()){
+            return 2
+        }
+        if (userPass.value.isNullOrEmpty()){
+            return 3
         }
         return 200
     }
