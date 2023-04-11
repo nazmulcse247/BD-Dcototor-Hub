@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation.findNavController
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.data.User
@@ -50,6 +51,7 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        onClickListener()
 
         lifecycle.coroutineScope.launchWhenCreated {
             authViewModel.user.collect {
@@ -86,6 +88,9 @@ class RegistrationFragment : Fragment() {
 
     }
 
+    private fun onClickListener() {
+        TODO("Not yet implemented")
+    }
 
 
 }

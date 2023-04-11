@@ -69,7 +69,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun onClickListener() {
-        binding.tvDontHaveAccount.setOnClickListener{
+        binding.tvDontHaveAccountSingUp.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
 

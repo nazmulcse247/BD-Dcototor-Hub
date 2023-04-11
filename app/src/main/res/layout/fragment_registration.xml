@@ -139,6 +139,36 @@
             app:layout_constraintEnd_toEndOf="@id/et_user_password"
             />
 
+        <TextView
+            android:id="@+id/tv_ready_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/already_have_an_account"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/green_A700"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_up"
+            app:layout_constraintStart_toStartOf="@id/btn_sign_up"
+            app:layout_constraintEnd_toEndOf="@id/btn_sign_up"
+            />
+
+        <TextView
+            android:id="@+id/tv_ready_have_account_sing_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/green_A700"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_marginStart="@dimen/_6sdp"
+            app:layout_constraintStart_toEndOf="@+id/tv_ready_have_account"
+            app:layout_constraintTop_toTopOf="@+id/tv_ready_have_account"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_ready_have_account"
+            />
+
+
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
