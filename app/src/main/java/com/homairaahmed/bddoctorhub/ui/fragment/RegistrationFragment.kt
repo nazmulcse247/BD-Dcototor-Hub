@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.User
 import com.homairaahmed.bddoctorhub.databinding.FragmentRegistrationBinding
+import com.homairaahmed.bddoctorhub.interfaces.ResendRequestCallBack
+import com.homairaahmed.bddoctorhub.utils.DialogUtils
+import com.homairaahmed.bddoctorhub.utils.NetworkUtils
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,7 +28,7 @@ import kotlinx.coroutines.launch
  */
 
 @AndroidEntryPoint
-class RegistrationFragment : Fragment() {
+class RegistrationFragment : Fragment(),ResendRequestCallBack {
 
     private lateinit var binding: FragmentRegistrationBinding
     private val authViewModel: AuthViewModel by viewModels()
@@ -51,7 +54,7 @@ class RegistrationFragment : Fragment() {
 
         onClickListener()
 
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             authViewModel.user.collect {
                 if (it.isLoading) {
                     binding.progressBar.visibility = View.VISIBLE
@@ -93,10 +96,20 @@ class RegistrationFragment : Fragment() {
             authViewModel.userPass.value = binding.etUserPassword.text.toString()
 
             if (registerDataValidation()) {
-
-                authViewModel.register()
+                registrattionUiObserver()
 
             }
+        }
+
+    }
+
+    fun registrattionUiObserver () {
+
+        if (NetworkUtils.isInternetAvailable(requireContext())){
+            authViewModel.register()
+        }
+        else {
+            DialogUtils.customDialog(requireContext(),this)
         }
 
     }
@@ -120,6 +133,12 @@ class RegistrationFragment : Fragment() {
             }
         }
         return true
+    }
+
+    override fun resendRequest() {
+        if (registerDataValidation()) {
+            registrattionUiObserver()
+        }
     }
 
 

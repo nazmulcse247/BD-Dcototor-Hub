@@ -96,4 +96,7 @@ dependencies {
     //Firebase Firestore
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
     implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // circular image view library
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

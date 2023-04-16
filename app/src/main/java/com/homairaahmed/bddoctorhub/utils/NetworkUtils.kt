@@ -8,7 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 
-class NetworkUtils constructor(@ApplicationContext var context: Context) {
+class NetworkUtils {
 
     companion object {
         fun isInternetAvailable(context: Context): Boolean {

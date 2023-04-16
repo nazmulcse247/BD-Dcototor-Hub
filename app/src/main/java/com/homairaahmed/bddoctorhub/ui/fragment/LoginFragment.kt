@@ -11,13 +11,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentLoginBinding
+import com.homairaahmed.bddoctorhub.interfaces.ResendRequestCallBack
+import com.homairaahmed.bddoctorhub.utils.DialogUtils
+import com.homairaahmed.bddoctorhub.utils.NetworkUtils
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(),ResendRequestCallBack {
 
     private lateinit var binding: FragmentLoginBinding
     private val authViewModel : AuthViewModel by viewModels()
@@ -51,6 +54,7 @@ class LoginFragment : Fragment() {
                 it.data?.let {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
                 }
             }
         }
@@ -67,12 +71,24 @@ class LoginFragment : Fragment() {
         }
 
 
-        binding.btnLogin.setOnClickListener(){
+        binding.btnLogin.setOnClickListener {
             authViewModel.userEmail.value = binding.etUserName.text.toString()
             authViewModel.userPass.value = binding.etUserPassword.text.toString()
             if (loginDataValidation()){
-                authViewModel.login()
+                loginUIObserver()
+
             }
+        }
+    }
+
+    fun loginUIObserver() {
+
+        if (NetworkUtils.isInternetAvailable(requireContext())){
+            authViewModel.login()
+        }
+
+        else {
+            DialogUtils.customDialog(requireContext(),this)
         }
     }
 
@@ -90,6 +106,14 @@ class LoginFragment : Fragment() {
             }
         }
         return true
+    }
+
+
+
+    override fun resendRequest() {
+        if (loginDataValidation()){
+            loginUIObserver()
+        }
     }
 
 
