@@ -14,9 +14,11 @@ import com.homairaahmed.bddoctorhub.databinding.FragmentLoginBinding
 import com.homairaahmed.bddoctorhub.interfaces.ResendRequestCallBack
 import com.homairaahmed.bddoctorhub.utils.DialogUtils
 import com.homairaahmed.bddoctorhub.utils.NetworkUtils
+import com.homairaahmed.bddoctorhub.utils.preference.UserAuthPref
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -24,6 +26,9 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
 
     private lateinit var binding: FragmentLoginBinding
     private val authViewModel : AuthViewModel by viewModels()
+
+    @Inject
+    lateinit var userAuthPref: UserAuthPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,11 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater,container,false)
+
+        if (userAuthPref.getUserAuthData()){
+            findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
+        }
+
         return binding.root
     }
 
@@ -54,6 +64,7 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
                 it.data?.let {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                    userAuthPref.saveUserAuthData()
                     findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
                 }
             }
