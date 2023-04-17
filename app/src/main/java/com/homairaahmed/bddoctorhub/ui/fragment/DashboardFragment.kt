@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentDashboardBinding
 
@@ -35,6 +38,18 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
+        val imageList = ArrayList<SlideModel>()
+        val imageList1 = ArrayList<Int>()
+        imageList1.add(R.drawable.doc_1)
+        imageList1.add(R.drawable.doc_2)
+        imageList1.add(R.drawable.doc_3)
+
+        for (i in 0 until imageList1.size){
+            imageList.add(SlideModel(imageList1[i]))
+        }
+
+        imageSlider.setImageList(imageList,ScaleTypes.FIT)
 
     }
 

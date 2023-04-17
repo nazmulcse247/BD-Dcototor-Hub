@@ -73,28 +73,36 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:background="@color/border"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        android:id="@+id/cl_container">
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140sdp"
+                android:id="@+id/imageSlider"
+                app:iss_auto_cycle="true"
+                app:iss_delay="0"
+                app:iss_placeholder="@android:color/darker_gray"
+                app:iss_error_image="@android:color/darker_gray"
+                app:iss_corner_radius="5"
+                app:iss_selected_dot="@drawable/default_selected_dot"
+                app:iss_unselected_dot="@drawable/default_unselected_dot"
+                app:iss_period="1000"
+                android:layout_margin="@dimen/_6sdp"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintTop_toTopOf="parent"/>
+
 
 
 
@@ -103,7 +111,6 @@
 
 
     </androidx.core.widget.NestedScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
