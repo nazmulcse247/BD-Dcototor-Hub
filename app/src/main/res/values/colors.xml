@@ -31,4 +31,5 @@
     <color name="tailwind_green">#16A34A</color>
     <color name="tailwind_rose">#E11D48</color>
     <color name="border_line">#E5E7EB</color>
+    <color name="card_bg">#E6F1FB</color>
 </resources>
