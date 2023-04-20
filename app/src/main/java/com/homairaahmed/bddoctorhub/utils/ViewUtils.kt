@@ -14,7 +14,7 @@ class ViewUtils {
 
         fun START_ACTIVITY_WITH_ANIMATION(activity : Activity,intent : Intent) {
             activity.startActivity(intent)
-            activity.overridePendingTransition(R.anim.animation_slide_in_right, R.anim.animation_slide_out_left)
+            activity.overridePendingTransition(R.anim.from_right, R.anim.to_left)
 
         }
 
