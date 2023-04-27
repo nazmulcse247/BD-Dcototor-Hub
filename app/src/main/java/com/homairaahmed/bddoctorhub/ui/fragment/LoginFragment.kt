@@ -38,12 +38,11 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(inflater,container,false)
 
         if (userAuthPref.getUserAuthData()){
             findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
         }
-
+        binding = FragmentLoginBinding.inflate(inflater,container,false)
         return binding.root
     }
 
