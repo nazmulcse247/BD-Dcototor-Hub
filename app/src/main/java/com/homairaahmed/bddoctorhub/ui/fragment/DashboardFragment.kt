@@ -9,12 +9,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.homairaahmed.bddoctorhub.R
+import com.homairaahmed.bddoctorhub.adapter.CategoryAdapter
 import com.homairaahmed.bddoctorhub.adapter.SliderAdapter
+import com.homairaahmed.bddoctorhub.data.Category
 import com.homairaahmed.bddoctorhub.databinding.FragmentDashboardBinding
 import com.homairaahmed.bddoctorhub.utils.networkstate.displayToast
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
@@ -33,6 +37,7 @@ class DashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
     private val authViewModel: AuthViewModel by viewModels()
+    private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +68,24 @@ class DashboardFragment : Fragment() {
 
 
         userDataUIObserver()
+        categoryUIObserver()
 
+    }
+
+    private fun categoryUIObserver() {
+        val categoryList = ArrayList<Category>()
+        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
+        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
+        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
+        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
+        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
+        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
+
+        categoryAdapter = CategoryAdapter(categoryList,requireContext())
+        val layoutManager = GridLayoutManager(requireContext(),4)
+        binding.rvCategory.layoutManager = layoutManager
+        binding.rvCategory.adapter = categoryAdapter
+        categoryAdapter.differ.submitList(categoryList)
     }
 
     @SuppressLint("SetTextI18n")
