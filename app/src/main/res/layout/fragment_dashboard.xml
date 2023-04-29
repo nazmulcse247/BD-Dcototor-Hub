@@ -65,11 +65,7 @@
 
 
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -91,22 +87,25 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_slider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_90sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_margin="@dimen/_6sdp"
                 android:elevation="@dimen/_5sdp"
                 app:cardCornerRadius="@dimen/_4sdp"
+                android:padding="@dimen/_24sdp"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_slider"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    />
 
             </androidx.cardview.widget.CardView>
+
             <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
                 android:id="@+id/worm_dots_indicator"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_8sdp"
                 app:dotsColor="@color/green_A400"
                 app:dotsStrokeColor="@color/teal_200"
                 app:dotsCornerRadius="8dp"
@@ -142,6 +141,29 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_category"
                 app:layout_constraintStart_toStartOf="@id/tv_category"
                 tools:listitem="@layout/category_layout"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_popular_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Doctor"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_category"
+                app:layout_constraintStart_toStartOf="@+id/rv_category"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_popular_doctor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_popular_doctor"
+                app:layout_constraintStart_toStartOf="@id/tv_popular_doctor"
+                tools:listitem="@layout/most_popular_doctor_layout"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

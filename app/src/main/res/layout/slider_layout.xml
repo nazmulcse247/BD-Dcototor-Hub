@@ -7,11 +7,10 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_slider"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/slider_1"
+        android:layout_height="@dimen/_100sdp"
+        app:srcCompat="@drawable/slider_4"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

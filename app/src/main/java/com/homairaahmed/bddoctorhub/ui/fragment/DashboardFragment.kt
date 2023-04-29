@@ -19,8 +19,10 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.adapter.CategoryAdapter
+import com.homairaahmed.bddoctorhub.adapter.MostPopularDoctorAdapter
 import com.homairaahmed.bddoctorhub.adapter.SliderAdapter
 import com.homairaahmed.bddoctorhub.data.Category
+import com.homairaahmed.bddoctorhub.data.Doctor
 import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.databinding.FragmentDashboardBinding
 import com.homairaahmed.bddoctorhub.utils.networkstate.displayToast
@@ -43,6 +45,7 @@ class DashboardFragment : Fragment() {
     private val authViewModel: AuthViewModel by viewModels()
     private val categoryViewModel: DashboardViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var mostPopularAdapter: MostPopularDoctorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +68,7 @@ class DashboardFragment : Fragment() {
         val imageList = ArrayList<Int>()
         imageList.add(R.drawable.slider_1)
         imageList.add(R.drawable.slider_2)
+        imageList.add(R.drawable.slider_4)
 
         binding.vpSlider.adapter = SliderAdapter(imageList,requireContext())
         binding.vpSlider.orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -74,7 +78,23 @@ class DashboardFragment : Fragment() {
 
         userDataUIObserver()
         categoryUIObserver()
+        mostPopularUIObserver()
 
+    }
+
+    private fun mostPopularUIObserver() {
+        val popularList = ArrayList<Doctor>()
+
+        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
+        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
+        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
+        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
+        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
+
+        mostPopularAdapter = MostPopularDoctorAdapter(requireContext(),popularList)
+        val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        binding.rvPopularDoctor.layoutManager = layoutManager
+        binding.rvPopularDoctor.adapter = mostPopularAdapter
     }
 
     private fun categoryUIObserver() {
