@@ -1,7 +1,9 @@
 package com.homairaahmed.bddoctorhub.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +21,11 @@ import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.adapter.CategoryAdapter
 import com.homairaahmed.bddoctorhub.adapter.SliderAdapter
 import com.homairaahmed.bddoctorhub.data.Category
+import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.databinding.FragmentDashboardBinding
 import com.homairaahmed.bddoctorhub.utils.networkstate.displayToast
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
+import com.homairaahmed.bddoctorhub.viewmodel.DashboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -37,6 +41,7 @@ class DashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
     private val authViewModel: AuthViewModel by viewModels()
+    private val categoryViewModel: DashboardViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,18 +79,34 @@ class DashboardFragment : Fragment() {
 
     private fun categoryUIObserver() {
         val categoryList = ArrayList<Category>()
-        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
-        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
-        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
-        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
-        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
-        categoryList.add(Category("Dentist",R.drawable.dentist,1,"Dentist"))
 
-        categoryAdapter = CategoryAdapter(categoryList,requireContext())
-        val layoutManager = GridLayoutManager(requireContext(),4)
-        binding.rvCategory.layoutManager = layoutManager
-        binding.rvCategory.adapter = categoryAdapter
-        categoryAdapter.differ.submitList(categoryList)
+        lifecycleScope.launch {
+            categoryViewModel.getAllCategory.collect {
+                when(it){
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Log.e(TAG, "categoryUIObserver: "+it.message)
+
+                    }
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        categoryList.clear()
+                        it.data?.let { it1 -> categoryList.addAll(it1) }
+                        categoryAdapter = CategoryAdapter(categoryList,requireContext())
+                        val layoutManager = GridLayoutManager(requireContext(),4)
+                        binding.rvCategory.layoutManager = layoutManager
+                        binding.rvCategory.adapter = categoryAdapter
+                        categoryAdapter.differ.submitList(categoryList)
+                    }
+                }
+
+            }
+        }
+
+
     }
 
     @SuppressLint("SetTextI18n")

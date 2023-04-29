@@ -11,8 +11,7 @@ class ImageUtils {
     companion object{
 
         fun showNetworkImage(imageView: ImageView, context : Context, imageUrl : String){
-            Glide.with(context).load(imageUrl).transition(DrawableTransitionOptions.withCrossFade(500)).placeholder(
-                R.drawable.placeholder).into(imageView)
+            Glide.with(context).load(imageUrl).transition(DrawableTransitionOptions.withCrossFade(500)).into(imageView)
         }
     }
 }

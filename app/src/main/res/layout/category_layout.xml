@@ -18,7 +18,6 @@
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
             android:padding="@dimen/_8sdp"
-            app:srcCompat="@drawable/placeholder"
             android:background="@drawable/image_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

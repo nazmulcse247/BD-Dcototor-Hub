@@ -35,8 +35,8 @@
                 android:text="Hi,Mr Nazmul"
                 tools:text="Hi,Nazmul"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                android:fontFamily="@font/roboto_bold"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/roboto_medium"
                 android:layout_marginStart="@dimen/_12sdp"
                 app:layout_constraintStart_toEndOf="@id/profileImage"
                 app:layout_constraintTop_toTopOf="@id/profileImage"/>
@@ -48,7 +48,7 @@
                 android:text="How do you feel today?"
                 tools:text="How do you feel today?"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/roboto_medium"
                 android:layout_marginTop="@dimen/_4sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_user_name"
                 app:layout_constraintStart_toStartOf="@id/tv_user_name"/>
@@ -119,16 +119,30 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 tools:ignore="MissingConstraints" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Category"
+                android:text="Category"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:fontFamily="@font/roboto_bold"
+                app:layout_constraintTop_toBottomOf="@id/worm_dots_indicator"
+                app:layout_constraintStart_toStartOf="@id/cv_slider"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                app:layout_constraintTop_toBottomOf="@id/worm_dots_indicator"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_category"
+                app:layout_constraintStart_toStartOf="@id/tv_category"
+                tools:listitem="@layout/category_layout"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -143,6 +157,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
+        android:indeterminateTint="@color/primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 

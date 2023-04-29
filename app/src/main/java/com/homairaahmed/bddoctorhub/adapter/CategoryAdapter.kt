@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.AsyncListUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.homairaahmed.bddoctorhub.data.Category
 import com.homairaahmed.bddoctorhub.databinding.CategoryLayoutBinding
+import com.homairaahmed.bddoctorhub.utils.ImageUtils
 
 class CategoryAdapter(private val categoryList : List<Category>, private val context : Context) : Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -40,8 +40,8 @@ class CategoryAdapter(private val categoryList : List<Category>, private val con
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categoryList[position]
         holder.binding.apply {
-            tvCategoryName.text = category.categoryTitle
-            ivCategoryImage.setImageDrawable(ContextCompat.getDrawable(context, category.image))
+            tvCategoryName.text = category.catName
+            ImageUtils.showNetworkImage(ivCategoryImage,context,category.catImage)
         }
 
     }
