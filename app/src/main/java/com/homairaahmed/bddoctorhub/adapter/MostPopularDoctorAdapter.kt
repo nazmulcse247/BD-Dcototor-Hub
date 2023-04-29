@@ -24,11 +24,11 @@ class MostPopularDoctorAdapter(private val context: Context,private val popularD
     ) {
         holder.binding.apply {
             val doctor = popularDoctorList[position]
-            ivDoctor.setImageDrawable(context.getDrawable(popularDoctorList[position].doctorImage))
-            tvDoctorName.text = doctor.doctorName
-            tvDoctorSpeciality.text = doctor.doctorSpeciality
-            tvDoctorEducation.text = doctor.doctorDegree
-            tvDoctorProfessor.text = doctor.doctorProfessor
+            ivDoctor.setImageDrawable(context.getDrawable(popularDoctorList[position].image))
+            tvDoctorName.text = doctor.name
+            tvDoctorSpeciality.text = doctor.speciality
+            tvDoctorEducation.text = doctor.degree
+            tvDoctorProfessor.text = doctor.professor
 
         }
     }
