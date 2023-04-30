@@ -2,6 +2,7 @@ package com.homairaahmed.bddoctorhub.di
 
 import android.content.Context
 import com.homairaahmed.bddoctorhub.repository.AuthRepository
+import com.homairaahmed.bddoctorhub.repository.DashboardRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +22,7 @@ class AppModule {
 
     @Provides
     fun provideAuthRepository() = AuthRepository()
+
+    @Provides
+    fun provideDashboardRepository() = DashboardRepository()
 }

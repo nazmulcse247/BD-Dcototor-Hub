@@ -43,8 +43,7 @@ class OtherServiceAdapter(
     override fun onBindViewHolder(holder: OtherServiceViewHolder, position: Int) {
         val otherService = otherServiceList[position]
         holder.binding.apply {
-            //ImageUtils.showNetworkImage(ivOtherService,context,otherService.serviceImage)
-            Glide.with(context).load(otherService.serviceImage).transition(DrawableTransitionOptions.withCrossFade(500)).into(ivOtherService)
+            Glide.with(context).load(otherService.serviceImage).into(this.ivOtherService)
             tvOtherServiceName.text = otherService.serviceName
         }
     }
