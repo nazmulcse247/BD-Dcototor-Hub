@@ -9,4 +9,6 @@ import javax.inject.Inject
 class DashboardViewModel @Inject constructor(private val repository: DashboardRepository) : ViewModel() {
 
     val getAllCategory = repository.getAllCategory()
+
+    val getOtherService = repository.getOtherService()
 }

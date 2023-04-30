@@ -14,22 +14,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.denzcoskun.imageslider.ImageSlider
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.adapter.CategoryAdapter
 import com.homairaahmed.bddoctorhub.adapter.MostPopularDoctorAdapter
+import com.homairaahmed.bddoctorhub.adapter.OtherServiceAdapter
 import com.homairaahmed.bddoctorhub.adapter.SliderAdapter
 import com.homairaahmed.bddoctorhub.data.Category
 import com.homairaahmed.bddoctorhub.data.Doctor
+import com.homairaahmed.bddoctorhub.data.OtherService
 import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.databinding.FragmentDashboardBinding
-import com.homairaahmed.bddoctorhub.utils.networkstate.displayToast
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
 import com.homairaahmed.bddoctorhub.viewmodel.DashboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -43,9 +40,10 @@ class DashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
     private val authViewModel: AuthViewModel by viewModels()
-    private val categoryViewModel: DashboardViewModel by viewModels()
+    private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var mostPopularAdapter: MostPopularDoctorAdapter
+    private lateinit var otherServiceAdapter: OtherServiceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,11 +74,15 @@ class DashboardFragment : Fragment() {
 
 
 
+        otherServiceUIObserver()
         userDataUIObserver()
         categoryUIObserver()
         mostPopularUIObserver()
 
+
     }
+
+
 
     private fun mostPopularUIObserver() {
         val popularList = ArrayList<Doctor>()
@@ -101,7 +103,7 @@ class DashboardFragment : Fragment() {
         val categoryList = ArrayList<Category>()
 
         lifecycleScope.launch {
-            categoryViewModel.getAllCategory.collect {
+            dashboardViewModel.getAllCategory.collect {
                 when(it){
                     is Resource.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
@@ -150,6 +152,39 @@ class DashboardFragment : Fragment() {
                     binding.tvUserName.visibility = View.VISIBLE
                     binding.tvUserName.text = "Hi,${it.name}"
                 }
+            }
+        }
+
+
+    }
+
+    private fun otherServiceUIObserver() {
+
+        val otherServiceList = ArrayList<OtherService>()
+
+        lifecycleScope.launch {
+            dashboardViewModel.getOtherService.collect {
+                when(it){
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Log.e(TAG, "categoryUIObserver: "+it.message)
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+                    }
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        //otherServiceList.clear()
+                        it.data?.let { it2 -> otherServiceList.addAll(it2) }
+                        otherServiceAdapter = OtherServiceAdapter(requireContext(),otherServiceList)
+                        binding.rvOtherService.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+                        binding.rvOtherService.adapter = otherServiceAdapter
+                        otherServiceAdapter.differ.submitList(otherServiceList)
+                    }
+                }
+
             }
         }
 
