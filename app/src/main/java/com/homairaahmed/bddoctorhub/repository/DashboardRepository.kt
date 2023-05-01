@@ -13,8 +13,6 @@ import javax.inject.Inject
 
 class DashboardRepository @Inject constructor(){
 
-
-
     fun getAllCategory() = flow<Resource<List<Category>>> {
 
         val mPostsCollection = FirebaseFirestore.getInstance().collection("Category")
