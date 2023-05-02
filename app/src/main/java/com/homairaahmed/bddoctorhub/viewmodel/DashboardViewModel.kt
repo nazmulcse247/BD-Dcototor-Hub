@@ -11,4 +11,6 @@ class DashboardViewModel @Inject constructor(private val repository: DashboardRe
     val getAllCategory = repository.getAllCategory()
 
     val getOtherService = repository.getOtherService()
+
+    val getAllPopularDoctor = repository.getAllPopularDoctor()
 }

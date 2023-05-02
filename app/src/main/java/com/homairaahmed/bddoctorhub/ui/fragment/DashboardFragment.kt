@@ -87,16 +87,30 @@ class DashboardFragment : Fragment() {
     private fun mostPopularUIObserver() {
         val popularList = ArrayList<Doctor>()
 
-        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
-        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
-        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
-        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
-        popularList.add(Doctor("Dr. Homaira Ahmed","Gynecology, Obstetrics, Gynecological Cancer Specialist & Surgeon","MBBS, DGO, MCPS, MS (OBGYN)","Bangabandhu Sheikh Mujib Medical University Hospital","5",R.drawable.male_placeholder))
+        lifecycleScope.launch {
+            dashboardViewModel.getAllPopularDoctor.collect {
+                when(it){
+                    is Resource.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        Log.e(TAG, "mostPopularUIObserver: "+it.message)
+                    }
+                    is Resource.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        popularList.clear()
+                        it.data?.let { it1 -> popularList.addAll(it1) }
+                        mostPopularAdapter = MostPopularDoctorAdapter(requireContext(),popularList)
+                        val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                        binding.rvPopularDoctor.layoutManager = layoutManager
+                        binding.rvPopularDoctor.adapter = mostPopularAdapter
+                    }
+                }
+            }
+        }
 
-        mostPopularAdapter = MostPopularDoctorAdapter(requireContext(),popularList)
-        val layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        binding.rvPopularDoctor.layoutManager = layoutManager
-        binding.rvPopularDoctor.adapter = mostPopularAdapter
+
     }
 
     private fun categoryUIObserver() {
