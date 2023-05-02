@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.homairaahmed.bddoctorhub.data.Doctor
 import com.homairaahmed.bddoctorhub.databinding.MostPopularDoctorLayoutBinding
+import com.homairaahmed.bddoctorhub.utils.ImageUtils
 
 class MostPopularDoctorAdapter(private val context: Context,private val popularDoctorList: List<Doctor>) : RecyclerView.Adapter<MostPopularDoctorAdapter.mostPopularDoctorViewHolder>() {
 
@@ -28,6 +29,7 @@ class MostPopularDoctorAdapter(private val context: Context,private val popularD
             tvDoctorSpeciality.text = doctor.specility
             tvDoctorEducation.text = doctor.education
             tvDoctorProfessor.text = doctor.professor
+            ImageUtils.showNetworkImage(ivDoctor,context,doctor.image)
 
         }
     }
