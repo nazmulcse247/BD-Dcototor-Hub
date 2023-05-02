@@ -13,4 +13,7 @@
         <item name="android:statusBarColor">@color/green_A700</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">20%</item>
+    </style>
 </resources>
