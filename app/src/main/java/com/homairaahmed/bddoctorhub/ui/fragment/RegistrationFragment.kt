@@ -66,7 +66,8 @@ class RegistrationFragment : Fragment(),ResendRequestCallBack {
                 }
                 it.data?.let {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Registration Done , Please Sign in", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
                 }
             }
         }
