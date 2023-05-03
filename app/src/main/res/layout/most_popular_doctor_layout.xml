@@ -21,10 +21,8 @@
             android:layout_height="@dimen/_100sdp"
             app:srcCompat="@drawable/male_placeholder"
             android:scaleType="centerCrop"
-            android:padding="@dimen/_5sdp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/teal_200"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

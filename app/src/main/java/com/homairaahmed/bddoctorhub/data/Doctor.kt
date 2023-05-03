@@ -1,5 +1,10 @@
 package com.homairaahmed.bddoctorhub.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+@Parcelize
 data class Doctor(
     var about : String,
     var chamber: List<String>,
@@ -13,7 +18,7 @@ data class Doctor(
     var specility: String,
     var status : String,
 
-) {
+) : Parcelable {
     constructor() : this("", listOf(), "", "", "", "", "", "", "", "", "")
 
 }

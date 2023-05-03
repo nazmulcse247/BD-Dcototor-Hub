@@ -50,6 +50,17 @@
         android:name="com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
-
+        <action
+            android:id="@+id/action_dashboardFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorDetailsFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.DoctorDetailsFragment"
+        android:label="fragment_doctor_details"
+        tools:layout="@layout/fragment_doctor_details" >
+        <argument
+            android:name="doctor"
+            app:argType="com.homairaahmed.bddoctorhub.data.Doctor" />
     </fragment>
 </navigation>

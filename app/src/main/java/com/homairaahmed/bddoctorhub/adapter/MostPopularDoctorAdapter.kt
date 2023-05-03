@@ -3,9 +3,13 @@ package com.homairaahmed.bddoctorhub.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
+import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.Doctor
 import com.homairaahmed.bddoctorhub.databinding.MostPopularDoctorLayoutBinding
+import com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragmentDirections
 import com.homairaahmed.bddoctorhub.utils.ImageUtils
 
 class MostPopularDoctorAdapter(private val context: Context,private val popularDoctorList: List<Doctor>) : RecyclerView.Adapter<MostPopularDoctorAdapter.mostPopularDoctorViewHolder>() {
@@ -31,7 +35,16 @@ class MostPopularDoctorAdapter(private val context: Context,private val popularD
             tvDoctorProfessor.text = doctor.professor
             ImageUtils.showNetworkImage(ivDoctor,context,doctor.image)
 
+            holder.itemView.setOnClickListener {
+                val action = DashboardFragmentDirections.actionDashboardFragmentToDoctorDetailsFragment(doctor)
+                it.findNavController().navigate(action)
+            }
+
         }
+
+
+
+
     }
 
     override fun getItemCount(): Int {
