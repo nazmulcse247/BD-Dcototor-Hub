@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -19,10 +20,7 @@ import com.homairaahmed.bddoctorhub.adapter.CategoryAdapter
 import com.homairaahmed.bddoctorhub.adapter.MostPopularDoctorAdapter
 import com.homairaahmed.bddoctorhub.adapter.OtherServiceAdapter
 import com.homairaahmed.bddoctorhub.adapter.SliderAdapter
-import com.homairaahmed.bddoctorhub.data.Category
-import com.homairaahmed.bddoctorhub.data.Doctor
-import com.homairaahmed.bddoctorhub.data.OtherService
-import com.homairaahmed.bddoctorhub.data.Resource
+import com.homairaahmed.bddoctorhub.data.*
 import com.homairaahmed.bddoctorhub.databinding.FragmentDashboardBinding
 import com.homairaahmed.bddoctorhub.viewmodel.AuthViewModel
 import com.homairaahmed.bddoctorhub.viewmodel.DashboardViewModel
@@ -44,6 +42,7 @@ class DashboardFragment : Fragment() {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var mostPopularAdapter: MostPopularDoctorAdapter
     private lateinit var otherServiceAdapter: OtherServiceAdapter
+    lateinit var user : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +71,8 @@ class DashboardFragment : Fragment() {
         binding.vpSlider.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.wormDotsIndicator.attachTo(binding.vpSlider)
 
+        setOnclikListener()
+
 
 
         otherServiceUIObserver()
@@ -82,6 +83,14 @@ class DashboardFragment : Fragment() {
 
     }
 
+    private fun setOnclikListener() {
+        binding.apply {
+            profileImage.setOnClickListener {
+                //val action = DashboardFragmentDirections.actionDashboardFragmentToUserProfileFragment(User)
+                findNavController().navigate(R.id.action_dashboardFragment_to_userProfileFragment)
+            }
+        }
+    }
 
 
     private fun mostPopularUIObserver() {
@@ -165,6 +174,7 @@ class DashboardFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     binding.tvUserName.visibility = View.VISIBLE
                     binding.tvUserName.text = "Hi,${it.name}"
+                    user = it
                 }
             }
         }

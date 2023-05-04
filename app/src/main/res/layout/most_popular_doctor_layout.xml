@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/_100sdp"
             app:srcCompat="@drawable/male_placeholder"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

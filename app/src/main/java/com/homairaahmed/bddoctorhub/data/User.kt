@@ -1,5 +1,6 @@
 package com.homairaahmed.bddoctorhub.data
 
+
 data class User(
     val name: String = "",
     val image: String = "",

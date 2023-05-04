@@ -10,4 +10,5 @@
     <string name="don_t_have_account">Don\'t have account ?</string>
     <string name="user_name">User name</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="logout">LogOut</string>
 </resources>
