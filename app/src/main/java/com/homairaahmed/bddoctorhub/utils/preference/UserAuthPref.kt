@@ -9,8 +9,8 @@ class UserAuthPref @Inject constructor(@ApplicationContext context: Context) {
 
     private val pref = context.getSharedPreferences(USER_AUTH_PREF, Context.MODE_PRIVATE)
 
-    fun saveUserAuthData() {
-        pref.edit().putBoolean("isUserLoggedIn", true).apply()
+    fun saveUserAuthData(boolean: Boolean) {
+        pref.edit().putBoolean("isUserLoggedIn", boolean).apply()
     }
 
     fun getUserAuthData(): Boolean {

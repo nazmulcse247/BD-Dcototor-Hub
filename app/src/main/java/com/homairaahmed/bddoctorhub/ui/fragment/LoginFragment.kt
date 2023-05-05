@@ -63,7 +63,7 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
                 it.data?.let {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-                    userAuthPref.saveUserAuthData()
+                    userAuthPref.saveUserAuthData(true)
                     findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
                 }
             }
