@@ -6,8 +6,8 @@
     android:id="@+id/errorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/white"
-
     tools:visibility="visible"
     >
 
@@ -15,17 +15,17 @@
         android:id="@+id/cancelIV"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/baseline_signal_wifi_statusbar_connected_no_internet_4_24" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/errorTitleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Ooops!"
         android:textColor="@color/green_A400"
         android:textSize="18sp"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="No Internet Connection. Lets try one more time."
         android:textColor="#999999"

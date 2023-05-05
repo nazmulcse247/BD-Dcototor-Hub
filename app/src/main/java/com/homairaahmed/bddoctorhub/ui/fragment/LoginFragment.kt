@@ -48,6 +48,7 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         onClickListener()
 
         lifecycleScope.launch {
@@ -105,17 +106,19 @@ class LoginFragment : Fragment(),ResendRequestCallBack {
     private fun loginDataValidation() : Boolean {
         when(authViewModel.loginDataValidation()){
             1 -> {
-                binding.etUserName.setError("Please enter your username")
+                binding.etUserName.error = "Please enter your username"
                 binding.etUserName.requestFocus()
-                false
+                return false
             }
             2 -> {
-                binding.etUserPassword.setError("Please enter your password")
+                binding.etUserPassword.error = "Please enter your password"
                 binding.etUserPassword.requestFocus()
-                false
+                return false
             }
+
         }
         return true
+
     }
 
 

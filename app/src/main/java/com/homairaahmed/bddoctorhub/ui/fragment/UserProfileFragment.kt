@@ -52,7 +52,6 @@ class UserProfileFragment : Fragment() {
 
 
         userDataUIObserver()
-
         setOnclickListener()
 
     }

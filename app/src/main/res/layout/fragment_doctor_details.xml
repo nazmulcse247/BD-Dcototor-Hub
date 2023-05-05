@@ -29,22 +29,15 @@
         app:layout_constraintStart_toEndOf="@id/ivBack"
         app:layout_constraintTop_toTopOf="@id/ivBack" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23"
-        app:layout_constraintTop_toBottomOf="@id/ivBack"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@color/off_white"
+        app:layout_constraintTop_toBottomOf="@+id/ivBack"
         />
 
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintBottom_toBottomOf="@+id/guideline">
 
 
-   </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
