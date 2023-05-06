@@ -30,6 +30,16 @@
         app:layout_constraintStart_toEndOf="@id/ivBack"
         app:layout_constraintTop_toTopOf="@id/ivBack" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvDoctorDetails"
+        app:layout_constraintBottom_toBottomOf="@id/tvDoctorDetails"
+        app:srcCompat="@drawable/baseline_share_24" />
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -61,6 +61,10 @@ class DoctorDetailsFragment : Fragment() {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + args.doctor.phone))
             startActivity(intent)
         }
+
+        binding.ivShare.setOnClickListener {
+            showSharingDialogAsKotlin("Doctor Name : ${args.doctor.name}\nDoctor Education : ${args.doctor.education}\nDoctor Speciality : ${args.doctor.specility}\nDoctor Professor : ${args.doctor.professor}\nDoctor About : ${args.doctor.about}\nDoctor Chamber : ${args.doctor.chamber}\nDoctor Image : ${args.doctor.image}")
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -81,6 +85,15 @@ class DoctorDetailsFragment : Fragment() {
 
         }
 
+    }
+
+
+    fun showSharingDialogAsKotlin(text: String) {
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, text)
+        startActivity(Intent.createChooser(intent, "Share with:"))
     }
 
 
