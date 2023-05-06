@@ -1,20 +1,19 @@
 package com.homairaahmed.bddoctorhub.ui.fragment
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentDoctorDetailsBinding
-import com.homairaahmed.bddoctorhub.ui.activity.MainActivity
+
 
 /**
  * A simple [Fragment] subclass.
@@ -45,14 +44,26 @@ class DoctorDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        setOnclickListener()
 
+
+
+
+    }
+
+    private fun setOnclickListener() {
 
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
+        binding.btnCall.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + args.doctor.phone))
+            startActivity(intent)
+        }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
         val doctor = args.doctor
         binding.apply {
@@ -60,11 +71,13 @@ class DoctorDetailsFragment : Fragment() {
             tvDoctorEducation.text = doctor.education
             tvDoctorSpeciality.text = doctor.specility
             tvDoctorProfessor.text = doctor.professor
+            tvAppointmentChamberDetails.text = doctor.about
+            tvAppointmentChamber.text = "About ${doctor.name}"
             Glide.with(requireContext()).load(doctor.image).placeholder(R.drawable.male_placeholder).into(ivDoctor)
+            doctor.chamber[0].let { tvDoctorAppointmentChamber.text = it }
+            doctor.chamber[1].let { tvDoctorAppointmentAddress.text = "Address : $it" }
+            doctor.chamber[2].let { tvDoctorAppointmentTime.text = "Visiting Hour : $it" }
 
-            doctor.chamber[0].let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
 
         }
 

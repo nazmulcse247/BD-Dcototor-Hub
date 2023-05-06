@@ -11,4 +11,5 @@
     <string name="user_name">User name</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="logout">LogOut</string>
+    <string name="chamber_appointment"><![CDATA[Chamber & Appointment]]></string>
 </resources>
