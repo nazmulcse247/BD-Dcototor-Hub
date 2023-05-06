@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentDoctorDetailsBinding
 import com.homairaahmed.bddoctorhub.ui.activity.MainActivity
@@ -43,10 +44,8 @@ class DoctorDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val doctor = args.doctor
-        doctor.chamber[0].let {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        }
+        initView()
+
 
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
@@ -54,6 +53,22 @@ class DoctorDetailsFragment : Fragment() {
 
     }
 
+    private fun initView() {
+        val doctor = args.doctor
+        binding.apply {
+            tvDoctorName.text = doctor.name
+            tvDoctorEducation.text = doctor.education
+            tvDoctorSpeciality.text = doctor.specility
+            tvDoctorProfessor.text = doctor.professor
+            Glide.with(requireContext()).load(doctor.image).placeholder(R.drawable.male_placeholder).into(ivDoctor)
+
+            doctor.chamber[0].let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+    }
 
 
 }
