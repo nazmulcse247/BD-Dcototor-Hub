@@ -2,6 +2,7 @@ package com.homairaahmed.bddoctorhub.di
 
 import android.content.Context
 import com.homairaahmed.bddoctorhub.repository.AuthRepository
+import com.homairaahmed.bddoctorhub.repository.CategoryRepository
 import com.homairaahmed.bddoctorhub.repository.DashboardRepository
 import dagger.Module
 import dagger.Provides
@@ -25,4 +26,7 @@ class AppModule {
 
     @Provides
     fun provideDashboardRepository() = DashboardRepository()
+
+    @Provides
+    fun provideCategoryRepository() = CategoryRepository()
 }

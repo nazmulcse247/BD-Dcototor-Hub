@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.Category
 import com.homairaahmed.bddoctorhub.databinding.CategoryLayoutBinding
+import com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragmentDirections
 import com.homairaahmed.bddoctorhub.utils.ImageUtils
 
 class CategoryAdapter(private val categoryList : List<Category>, private val context : Context) : Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -42,7 +45,14 @@ class CategoryAdapter(private val categoryList : List<Category>, private val con
         holder.binding.apply {
             tvCategoryName.text = category.catName
             ImageUtils.showNetworkImage(ivCategoryImage,context,category.catImage)
+            holder.itemView.setOnClickListener {
+                val action = DashboardFragmentDirections.actionDashboardFragmentToCategoryDoctorFragment(category.categoryType)
+                it.findNavController().navigate(action)
+            }
+
         }
+
+
 
     }
 

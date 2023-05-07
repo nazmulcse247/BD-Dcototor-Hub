@@ -71,7 +71,7 @@ class DashboardFragment : Fragment() {
         binding.vpSlider.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.wormDotsIndicator.attachTo(binding.vpSlider)
 
-        setOnclikListener()
+        setOnClickListener()
 
 
 
@@ -83,7 +83,7 @@ class DashboardFragment : Fragment() {
 
     }
 
-    private fun setOnclikListener() {
+    private fun setOnClickListener() {
         binding.apply {
             profileImage.setOnClickListener {
                 //val action = DashboardFragmentDirections.actionDashboardFragmentToUserProfileFragment(User)
