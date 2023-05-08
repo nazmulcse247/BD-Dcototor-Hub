@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.Doctor
 import com.homairaahmed.bddoctorhub.databinding.CategoryDoctorLayoutBinding
+import com.homairaahmed.bddoctorhub.ui.fragment.CategoryDoctorFragment
+import com.homairaahmed.bddoctorhub.ui.fragment.CategoryDoctorFragmentDirections
 import com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragmentDirections
 
 class CategoryDoctorAdapter(private val context: Context,private val list: List<Doctor>) : Adapter<CategoryDoctorAdapter.CategoryDoctorViewHolder>(){
@@ -32,6 +34,10 @@ class CategoryDoctorAdapter(private val context: Context,private val list: List<
             tvDoctorEducation.text = doctor.education
             tvDoctorSpeciality.text = doctor.specility
             tvDoctorProfessor.text = doctor.professor
+            holder.itemView.setOnClickListener {
+                val action = CategoryDoctorFragmentDirections.actionCategoryDoctorFragmentToDoctorDetailsFragment(doctor)
+                it.findNavController().navigate(action)
+            }
 
         }
 

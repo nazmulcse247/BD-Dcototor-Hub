@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.homairaahmed.bddoctorhub.R
@@ -63,6 +64,10 @@ class CategoryDoctorFragment : Fragment() {
 
     private fun initView() {
         categoryViewModel.categoryName.value = args.category
+        binding.tvDoctorCategory.text = args.category
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun categoryDoctorUIObserver() {

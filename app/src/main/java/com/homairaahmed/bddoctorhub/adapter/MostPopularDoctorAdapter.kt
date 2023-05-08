@@ -43,8 +43,6 @@ class MostPopularDoctorAdapter(private val context: Context,private val popularD
         }
 
 
-
-
     }
 
     override fun getItemCount(): Int {

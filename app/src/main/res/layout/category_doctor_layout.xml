@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/card_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/_5sdp"
+    android:background="@drawable/card_bg"
     android:padding="@dimen/_5sdp">
 
 
@@ -13,82 +13,84 @@
         android:id="@+id/iv_doctor"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
-        android:src="@drawable/male_placeholder"
         android:background="@drawable/circular_image_bg"
-        android:padding="@dimen/_5sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/male_placeholder"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_doctor_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Prof. Dr. Md. Abid Hossain Mollah"
-        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/roboto_regular"
+        android:singleLine="true"
         android:textColor="@color/black"
-        android:textSize="@dimen/_14ssp"
-        android:fontFamily="@font/roboto_medium"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_doctor"
-        app:layout_constraintTop_toTopOf="@id/iv_doctor"/>
+        app:layout_constraintTop_toTopOf="@id/iv_doctor"
+        tools:text="Prof. Dr. Md. Abid Hossain Mollah" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_doctor_education"
         android:layout_width="@dimen/_12sdp"
         android:layout_height="@dimen/_12sdp"
-        app:srcCompat="@drawable/school"
         android:layout_marginTop="@dimen/_6sdp"
-        app:layout_constraintTop_toBottomOf="@id/tv_doctor_name"
         app:layout_constraintStart_toEndOf="@id/iv_doctor"
-        app:layout_constraintStart_toStartOf="@id/tv_doctor_name"/>
+        app:layout_constraintStart_toStartOf="@id/tv_doctor_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_doctor_name"
+        app:srcCompat="@drawable/school" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_doctor_education"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="MBBS, DGO, MCPS, MS (OBGYN)"
-        android:textSize="@dimen/_8ssp"
-        android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/black"
         android:layout_marginStart="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_3sdp"
+        android:fontFamily="@font/roboto_regular"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_8ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_doctor_education"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_doctor_education"
         app:layout_constraintTop_toTopOf="@+id/iv_doctor_education"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_doctor_education"
-
-        />
+        tools:text="MBBS, DGO, MCPS, MS (OBGYN)" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_doctor_speciality"
         android:layout_width="@dimen/_12sdp"
         android:layout_height="@dimen/_12sdp"
-        app:srcCompat="@drawable/stethoscope"
-        app:layout_constraintTop_toBottomOf="@id/iv_doctor_education"
+        android:layout_marginTop="@dimen/_6sdp"
         app:layout_constraintStart_toStartOf="@+id/iv_doctor_education"
-        android:layout_marginTop="@dimen/_6sdp"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_doctor_education"
+        app:srcCompat="@drawable/stethoscope" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_doctor_speciality"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Gynecology, Obstetrics, Gynecological Cancer Specialist  Surgeon"
-        android:textSize="@dimen/_8ssp"
-        android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/black"
         android:layout_marginStart="@dimen/_3sdp"
+        android:fontFamily="@font/roboto_regular"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_8ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_doctor_speciality"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_doctor_speciality"
         app:layout_constraintTop_toTopOf="@+id/iv_doctor_speciality"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_doctor_speciality"
-        />
+        tools:text="Gynecology, Obstetrics, Gynecological Cancer Specialist  Surgeon" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_doctor_professor"
         android:layout_width="@dimen/_12sdp"
         android:layout_height="@dimen/_12sdp"
-        app:srcCompat="@drawable/hospital"
-        app:layout_constraintTop_toBottomOf="@id/iv_doctor_speciality"
+        android:layout_marginTop="@dimen/_6sdp"
         app:layout_constraintStart_toStartOf="@+id/iv_doctor_speciality"
-        android:layout_marginTop="@dimen/_6sdp"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_doctor_speciality"
+        app:srcCompat="@drawable/hospital" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_doctor_professor"
@@ -96,13 +98,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_3sdp"
         android:fontFamily="@font/roboto_regular"
+        android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="@dimen/_8ssp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_doctor_professor"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_doctor_professor"
         app:layout_constraintTop_toTopOf="@+id/iv_doctor_professor"
         tools:text="Bangabandhu Sheikh Mujib Medical University Hospital" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
