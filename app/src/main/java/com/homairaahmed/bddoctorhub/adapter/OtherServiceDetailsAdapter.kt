@@ -3,11 +3,12 @@ package com.homairaahmed.bddoctorhub.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.homairaahmed.bddoctorhub.data.Hospital
-import com.homairaahmed.bddoctorhub.data.Medical
 import com.homairaahmed.bddoctorhub.databinding.MedicalLayoutBinding
+import com.homairaahmed.bddoctorhub.ui.fragment.OtherServiceFragmentDirections
 
 class OtherServiceDetailsAdapter(private val context: Context , private val list: List<Hospital>) : Adapter<OtherServiceDetailsAdapter.OtherServiceDetailsViewHolder>(){
 
@@ -26,9 +27,13 @@ class OtherServiceDetailsAdapter(private val context: Context , private val list
     }
 
     override fun onBindViewHolder(holder: OtherServiceDetailsViewHolder, position: Int) {
-        val medical = list[position]
+        val hospital = list[position]
         holder.binding.apply {
-            tvHospitalName.text = medical.hospitalName
+            tvHospitalName.text = hospital.hospitalName
+        }
+        holder.itemView.setOnClickListener {
+            val action = OtherServiceFragmentDirections.actionOtherServiceFragmentToCategoryDoctorFragment(hospital.hospitalId)
+            it.findNavController().navigate(action)
         }
     }
 

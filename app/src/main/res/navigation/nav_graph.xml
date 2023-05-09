@@ -130,5 +130,9 @@
         <argument
             android:name="service_name"
             app:argType="com.homairaahmed.bddoctorhub.data.OtherService" />
+        <action
+            android:id="@+id/action_otherServiceFragment_to_categoryDoctorFragment"
+            app:destination="@id/categoryDoctorFragment" />
+
     </fragment>
 </navigation>
