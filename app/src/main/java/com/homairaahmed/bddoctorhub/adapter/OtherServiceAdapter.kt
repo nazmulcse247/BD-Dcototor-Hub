@@ -3,6 +3,7 @@ package com.homairaahmed.bddoctorhub.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.homairaahmed.bddoctorhub.data.OtherService
 import com.homairaahmed.bddoctorhub.databinding.OtherServiceLayoutBinding
+import com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragmentDirections
 import com.homairaahmed.bddoctorhub.utils.ImageUtils
 
 class OtherServiceAdapter(
@@ -45,6 +47,10 @@ class OtherServiceAdapter(
         holder.binding.apply {
             Glide.with(context).load(otherService.serviceImage).into(this.ivOtherService)
             tvOtherServiceName.text = otherService.serviceName
+            holder.itemView.setOnClickListener {
+                val action = DashboardFragmentDirections.actionDashboardFragmentToOtherServiceFragment(otherService)
+                it.findNavController().navigate(action)
+            }
         }
     }
 

@@ -73,6 +73,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_dashboardFragment_to_otherServiceFragment"
+            app:destination="@id/otherServiceFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
@@ -114,5 +121,14 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/otherServiceFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.OtherServiceFragment"
+        android:label="fragment_other_service"
+        tools:layout="@layout/fragment_other_service" >
+        <argument
+            android:name="service_name"
+            app:argType="com.homairaahmed.bddoctorhub.data.OtherService" />
     </fragment>
 </navigation>
