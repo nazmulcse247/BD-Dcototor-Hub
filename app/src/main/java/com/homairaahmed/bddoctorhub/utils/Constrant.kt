@@ -6,6 +6,7 @@ class Constrant {
         const val USER_AUTH_PREF = "user_auth"
         const val CATEGORY = "Category"
         const val DOCTOR = "Doctor"
+        const val HOSPITAL = "Hospitals"
         const val STATUS = "status"
         const val DEPARTMENT = "department"
         const val MOST_POPULAR = "most_popular"

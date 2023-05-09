@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.homairaahmed.bddoctorhub.data.Hospital
 import com.homairaahmed.bddoctorhub.data.Medical
 import com.homairaahmed.bddoctorhub.databinding.MedicalLayoutBinding
 
-class OtherServiceDetailsAdapter(private val context: Context , private val list: List<Medical>) : Adapter<OtherServiceDetailsAdapter.OtherServiceDetailsViewHolder>(){
+class OtherServiceDetailsAdapter(private val context: Context , private val list: List<Hospital>) : Adapter<OtherServiceDetailsAdapter.OtherServiceDetailsViewHolder>(){
 
-    inner class OtherServiceDetailsViewHolder(val binding: MedicalLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,7 +28,9 @@ class OtherServiceDetailsAdapter(private val context: Context , private val list
     override fun onBindViewHolder(holder: OtherServiceDetailsViewHolder, position: Int) {
         val medical = list[position]
         holder.binding.apply {
-
+            tvHospitalName.text = medical.hospitalName
         }
     }
+
+    inner class OtherServiceDetailsViewHolder(val binding: MedicalLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 }

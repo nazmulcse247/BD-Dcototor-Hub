@@ -17,8 +17,10 @@ data class Doctor(
     var professor : String,
     var specility: String,
     var status : String,
+    var hospitalCode : String,
+    var location : String
 
 ) : Parcelable {
-    constructor() : this("", listOf(), "", "", "", "", "", "", "", "", "")
+    constructor() : this("", listOf(), "", "", "", "", "", "", "", "", "","", "")
 
 }

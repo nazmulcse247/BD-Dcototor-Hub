@@ -10,7 +10,9 @@ import javax.inject.Inject
 class CategoryViewModel @Inject constructor(private val repository: CategoryRepository) : ViewModel() {
 
     val categoryName = MutableStateFlow("")
-    //val categoryName = MutableLiveData<String>()
+    val otherServiceName = MutableStateFlow("")
 
     fun getCategoryDoctor() = repository.getCategoryDoctor(categoryName.value)
+
+
 }

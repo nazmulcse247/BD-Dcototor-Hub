@@ -4,6 +4,7 @@ import android.content.Context
 import com.homairaahmed.bddoctorhub.repository.AuthRepository
 import com.homairaahmed.bddoctorhub.repository.CategoryRepository
 import com.homairaahmed.bddoctorhub.repository.DashboardRepository
+import com.homairaahmed.bddoctorhub.repository.OtherServiceRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,4 +30,7 @@ class AppModule {
 
     @Provides
     fun provideCategoryRepository() = CategoryRepository()
+
+    @Provides
+    fun provideOtherServiceRepository() = OtherServiceRepository()
 }
