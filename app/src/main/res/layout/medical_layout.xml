@@ -28,7 +28,15 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Dhaka Medical Hospital"/>
+            tools:text="Dhaka Medical Hospital"
+            android:singleLine="true"
+            app:layout_constraintTop_toTopOf="@id/iv_medical"
+            app:layout_constraintStart_toEndOf="@id/iv_medical"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_medical"/>
 
 
 

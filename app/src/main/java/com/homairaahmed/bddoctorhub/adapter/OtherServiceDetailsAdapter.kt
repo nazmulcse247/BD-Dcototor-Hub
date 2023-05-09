@@ -27,7 +27,7 @@ class OtherServiceDetailsAdapter(private val context: Context , private val list
     override fun onBindViewHolder(holder: OtherServiceDetailsViewHolder, position: Int) {
         val medical = list[position]
         holder.binding.apply {
-            tvMedicalName.text = medical.medicalName
+
         }
     }
 }
