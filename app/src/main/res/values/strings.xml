@@ -12,4 +12,5 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="logout">LogOut</string>
     <string name="chamber_appointment"><![CDATA[Chamber & Appointment]]></string>
+    <string name="call_to_booking">Call to booking</string>
 </resources>
