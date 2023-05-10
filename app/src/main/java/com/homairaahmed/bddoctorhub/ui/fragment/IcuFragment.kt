@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.adapter.HospitalDoctorAdapter
@@ -17,9 +18,11 @@ import com.homairaahmed.bddoctorhub.data.Icu
 import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.databinding.FragmentIcuBinding
 import com.homairaahmed.bddoctorhub.viewmodel.OtherServiceViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
+@AndroidEntryPoint
 class IcuFragment : Fragment() {
     private lateinit var binding : FragmentIcuBinding
     private val otherServiceViewModel : OtherServiceViewModel by viewModels()
@@ -77,11 +80,13 @@ class IcuFragment : Fragment() {
     }
 
     private fun setOnCliclListener() {
-        TODO("Not yet implemented")
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun initView() {
-        TODO("Not yet implemented")
+        binding.tvOtherServiceName.text = "ICU in Bangladesh"
     }
 
 }

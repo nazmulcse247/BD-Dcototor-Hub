@@ -80,6 +80,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_dashboardFragment_to_icuFragment"
+            app:destination="@id/icuFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
@@ -158,4 +165,9 @@
             android:id="@+id/action_hospitalWiseDoctorFragment_to_doctorDetailsFragment"
             app:destination="@id/doctorDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/icuFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.IcuFragment"
+        android:label="fragment_icu"
+        tools:layout="@layout/fragment_icu" />
 </navigation>

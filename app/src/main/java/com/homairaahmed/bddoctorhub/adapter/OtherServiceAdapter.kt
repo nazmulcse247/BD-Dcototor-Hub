@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.OtherService
 import com.homairaahmed.bddoctorhub.databinding.OtherServiceLayoutBinding
 import com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragmentDirections
@@ -49,6 +50,10 @@ class OtherServiceAdapter(
                 if (otherService.serviceId == "hospital104") {
                     val action = DashboardFragmentDirections.actionDashboardFragmentToOtherServiceFragment(otherService)
                     it.findNavController().navigate(action)
+                    return@setOnClickListener
+                }
+                else if (otherService.serviceId == "emergency105"){
+                    it.findNavController().navigate(R.id.action_dashboardFragment_to_icuFragment)
                     return@setOnClickListener
                 }
 
