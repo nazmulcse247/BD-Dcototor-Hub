@@ -1,7 +1,6 @@
 package com.homairaahmed.bddoctorhub.ui.fragment
 
 import android.content.ContentValues
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,38 +12,27 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.homairaahmed.bddoctorhub.adapter.HospitalAdapter
-import com.homairaahmed.bddoctorhub.data.Hospital
+import com.homairaahmed.bddoctorhub.adapter.CategoryDoctorAdapter
+import com.homairaahmed.bddoctorhub.adapter.HospitalDoctorAdapter
+import com.homairaahmed.bddoctorhub.data.Doctor
 import com.homairaahmed.bddoctorhub.data.Resource
-import com.homairaahmed.bddoctorhub.databinding.FragmentOtherServiceBinding
+import com.homairaahmed.bddoctorhub.databinding.FragmentHospitalWiseDoctorBinding
 import com.homairaahmed.bddoctorhub.viewmodel.OtherServiceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OtherServiceFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
-class OtherServiceFragment : Fragment() {
+class HospitalWiseDoctorFragment : Fragment() {
 
-    private lateinit var binding: FragmentOtherServiceBinding
-    private var context : Context? = null
-    private val args by navArgs<OtherServiceFragmentArgs>()
-    private val otherServiceViewModel : OtherServiceViewModel by viewModels()
-    private lateinit var hospitalAdapter: HospitalAdapter
-    private val hospitalList = ArrayList<Hospital>()
+    private lateinit var binding: FragmentHospitalWiseDoctorBinding
+    private val args by navArgs<HospitalWiseDoctorFragmentArgs>()
+    private val otherServiceViewModel: OtherServiceViewModel by viewModels()
+    private val doctorList = ArrayList<Doctor>()
+    private lateinit var hospitalDoctorAdapter: HospitalDoctorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        this.context = context
     }
 
     override fun onCreateView(
@@ -52,24 +40,37 @@ class OtherServiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentOtherServiceBinding.inflate(inflater, container, false)
+        binding  = FragmentHospitalWiseDoctorBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
-        setOnClickListeners()
+        initViews()
         medicalWiseDoctorUIObserver()
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
+        binding.apply {
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    private fun initViews() {
+
+        otherServiceViewModel.hospitalName.value = args.hospitalName
+        binding.tvOtherServiceName.text = args.hospital
 
     }
 
     private fun medicalWiseDoctorUIObserver() {
 
         lifecycleScope.launch {
-            otherServiceViewModel.getHospital().collect {
+            otherServiceViewModel.getCategoryDoctor().collect {
                 when(it){
                     is Resource.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
@@ -80,12 +81,12 @@ class OtherServiceFragment : Fragment() {
                     }
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        hospitalList.clear()
-                        it.data?.let { it1 -> hospitalList.addAll(it1) }
-                        hospitalAdapter = HospitalAdapter(requireContext(),hospitalList)
+                        doctorList.clear()
+                        it.data?.let { it1 -> doctorList.addAll(it1) }
+                        hospitalDoctorAdapter = HospitalDoctorAdapter(requireContext(),doctorList)
                         val layoutManager = LinearLayoutManager(requireContext())
                         binding.rvOtherService.layoutManager = layoutManager
-                        binding.rvOtherService.adapter = hospitalAdapter
+                        binding.rvOtherService.adapter = hospitalDoctorAdapter
                     }
                 }
 
@@ -94,22 +95,5 @@ class OtherServiceFragment : Fragment() {
 
 
     }
-
-
-
-    private fun initView() {
-        val serviceName = args.serviceName
-        binding.tvOtherServiceName.text = serviceName.serviceName
-    }
-
-    private fun setOnClickListeners() {
-
-        binding.apply {
-            ivBack.setOnClickListener {
-                findNavController().navigateUp()
-            }
-        }
-    }
-
 
 }

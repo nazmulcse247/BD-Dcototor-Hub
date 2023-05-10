@@ -8,11 +8,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.homairaahmed.bddoctorhub.data.OtherService
 import com.homairaahmed.bddoctorhub.databinding.OtherServiceLayoutBinding
 import com.homairaahmed.bddoctorhub.ui.fragment.DashboardFragmentDirections
-import com.homairaahmed.bddoctorhub.utils.ImageUtils
 
 class OtherServiceAdapter(
     private val context: Context,
@@ -48,8 +46,13 @@ class OtherServiceAdapter(
             Glide.with(context).load(otherService.serviceImage).into(this.ivOtherService)
             tvOtherServiceName.text = otherService.serviceName
             holder.itemView.setOnClickListener {
-                val action = DashboardFragmentDirections.actionDashboardFragmentToOtherServiceFragment(otherService)
-                it.findNavController().navigate(action)
+                if (otherService.serviceId == "hospital104") {
+                    val action = DashboardFragmentDirections.actionDashboardFragmentToOtherServiceFragment(otherService)
+                    it.findNavController().navigate(action)
+                    return@setOnClickListener
+                }
+
+
             }
         }
     }

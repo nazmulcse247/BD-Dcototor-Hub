@@ -10,7 +10,8 @@ import com.homairaahmed.bddoctorhub.data.Hospital
 import com.homairaahmed.bddoctorhub.databinding.MedicalLayoutBinding
 import com.homairaahmed.bddoctorhub.ui.fragment.OtherServiceFragmentDirections
 
-class OtherServiceDetailsAdapter(private val context: Context , private val list: List<Hospital>) : Adapter<OtherServiceDetailsAdapter.OtherServiceDetailsViewHolder>(){
+
+class HospitalAdapter(private val context: Context, private val list: List<Hospital>) : Adapter<HospitalAdapter.OtherServiceDetailsViewHolder>(){
 
 
 
@@ -31,8 +32,9 @@ class OtherServiceDetailsAdapter(private val context: Context , private val list
         holder.binding.apply {
             tvHospitalName.text = hospital.hospitalName
         }
+
         holder.itemView.setOnClickListener {
-            val action = OtherServiceFragmentDirections.actionOtherServiceFragmentToCategoryDoctorFragment(hospital.hospitalId)
+            val action = OtherServiceFragmentDirections.actionOtherServiceFragmentToHospitalWiseDoctorFragment(hospital.hospitalName, hospital.hospitalId)
             it.findNavController().navigate(action)
         }
     }

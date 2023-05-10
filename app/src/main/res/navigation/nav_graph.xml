@@ -127,12 +127,35 @@
         android:name="com.homairaahmed.bddoctorhub.ui.fragment.OtherServiceFragment"
         android:label="fragment_other_service"
         tools:layout="@layout/fragment_other_service" >
+
+        <action
+            android:id="@+id/action_otherServiceFragment_to_hospitalWiseDoctorFragment"
+            app:destination="@id/hospitalWiseDoctorFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <argument
             android:name="service_name"
             app:argType="com.homairaahmed.bddoctorhub.data.OtherService" />
+    </fragment>
+    <fragment
+        android:id="@+id/hospitalWiseDoctorFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.HospitalWiseDoctorFragment"
+        android:label="fragment_hospital_wise_doctor"
+        tools:layout="@layout/fragment_hospital_wise_doctor" >
+        <argument
+            android:name="hospital"
+            app:argType="string" />
+        <argument
+            android:name="hospitalName"
+            app:argType="string" />
         <action
-            android:id="@+id/action_otherServiceFragment_to_categoryDoctorFragment"
-            app:destination="@id/categoryDoctorFragment" />
-
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            android:id="@+id/action_hospitalWiseDoctorFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment" />
     </fragment>
 </navigation>
