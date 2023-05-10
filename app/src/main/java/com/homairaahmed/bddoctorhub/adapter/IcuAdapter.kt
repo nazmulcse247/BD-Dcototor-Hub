@@ -11,9 +11,6 @@ import com.homairaahmed.bddoctorhub.databinding.MedicalLayoutBinding
 class IcuAdapter(private val context: Context, private val icuList: List<Icu>) : Adapter<IcuAdapter.IcuDetailsViewHolder>(){
 
 
-
-    inner class IcuDetailsViewHolder(val binding: MedicalLayoutBinding) : RecyclerView.ViewHolder(binding.root)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IcuDetailsViewHolder {
         val binding = MedicalLayoutBinding.inflate(LayoutInflater.from(context), parent, false)
         return IcuDetailsViewHolder(binding)
@@ -31,4 +28,6 @@ class IcuAdapter(private val context: Context, private val icuList: List<Icu>) :
 
         }
     }
+
+    inner class IcuDetailsViewHolder(val binding: MedicalLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 }
