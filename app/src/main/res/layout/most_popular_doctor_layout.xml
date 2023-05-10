@@ -18,7 +18,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_doctor"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_110sdp"
+            android:layout_height="@dimen/_90sdp"
             app:srcCompat="@drawable/male_placeholder"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             app:layout_constraintTop_toTopOf="parent"

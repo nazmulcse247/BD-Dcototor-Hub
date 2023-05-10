@@ -12,6 +12,7 @@ class Constrant {
         const val MOST_POPULAR = "most_popular"
         const val OTHER_SERVICE = "OtherService"
         const val HOSPITALCODE = "hospitalCode"
+        const val ICU = "Icu"
     }
 
 
