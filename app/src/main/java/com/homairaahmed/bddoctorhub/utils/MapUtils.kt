@@ -1,5 +1,6 @@
 package com.homairaahmed.bddoctorhub.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,14 +10,14 @@ class MapUtils {
 
     companion object {
 
-        fun openMap(late : String , long : String,context: Context) {
+        @SuppressLint("QueryPermissionsNeeded")
+        fun openMap(late : String, long : String, context: Context) {
+            var uriString = "google.navigation:q=$late,$long&mode=d"
 
-            val gmmIntentUri = Uri.parse("geo:37.7749,-122.4194")
+            val gmmIntentUri = Uri.parse(uriString)
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
-            mapIntent.resolveActivity(context.packageManager)?.let {
-                context.startActivity(mapIntent)
-            }
+            context.startActivity(mapIntent)
 
         }
     }

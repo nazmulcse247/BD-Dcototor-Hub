@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentDoctorDetailsBinding
+import com.homairaahmed.bddoctorhub.utils.DialerUtils.Companion.dailNumber
 
 
 /**
@@ -58,8 +59,7 @@ class DoctorDetailsFragment : Fragment() {
         }
 
         binding.btnCall.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + args.doctor.phone))
-            startActivity(intent)
+            dailNumber(requireContext(),args.doctor.phone)
         }
 
         binding.ivShare.setOnClickListener {

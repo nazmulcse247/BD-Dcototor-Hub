@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BDDoctorHub" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.BDDoctorHub" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,6 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/green_A700</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="GreenButtonThemeOverlay">
+        <item name="colorPrimary">@color/green_A700</item>
+    </style>
+
+    <style name="FullScreenWithStatusBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/green_A700</item>
+        <item name="colorPrimaryDark">@color/green_A700</item>
+        <item name="colorAccent">@color/green_A700</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
         <item name="cornerSize">20%</item>
