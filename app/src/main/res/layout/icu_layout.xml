@@ -63,10 +63,11 @@
             android:padding="@dimen/_5sdp"
             android:text="@string/call_to_booking"
             android:textAllCaps="false"
+            android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivAmbulance" />
+            app:layout_constraintTop_toBottomOf="@id/tvHospitalAddress" />
 
 
         <androidx.appcompat.widget.AppCompatImageView
