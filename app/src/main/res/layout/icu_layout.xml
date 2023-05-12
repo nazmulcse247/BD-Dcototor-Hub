@@ -54,7 +54,6 @@
 
 
 
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCallToBooking"
             android:layout_width="wrap_content"
