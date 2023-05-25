@@ -87,6 +87,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_dashboardFragment_to_doctorSearchFragment"
+            app:destination="@id/doctorSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
@@ -170,4 +173,17 @@
         android:name="com.homairaahmed.bddoctorhub.ui.fragment.IcuFragment"
         android:label="fragment_icu"
         tools:layout="@layout/fragment_icu" />
+    <fragment
+        android:id="@+id/doctorSearchFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.DoctorSearchFragment"
+        android:label="fragment_doctor_search"
+        tools:layout="@layout/fragment_doctor_search" >
+        <action
+            android:id="@+id/action_doctorSearchFragment_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
+    </fragment>
 </navigation>

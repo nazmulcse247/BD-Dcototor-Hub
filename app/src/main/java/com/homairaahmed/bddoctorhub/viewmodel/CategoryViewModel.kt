@@ -13,4 +13,6 @@ class CategoryViewModel @Inject constructor(private val repository: CategoryRepo
     val otherServiceName = MutableStateFlow("")
 
     fun getCategoryDoctor() = repository.getCategoryDoctor(categoryName.value)
+
+    fun searchDoctor(doctorName : String) = repository.searchDoctor(doctorName)
 }

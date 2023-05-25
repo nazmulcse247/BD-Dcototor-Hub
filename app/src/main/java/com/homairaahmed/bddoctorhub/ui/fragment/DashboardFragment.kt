@@ -89,6 +89,10 @@ class DashboardFragment : Fragment() {
                 //val action = DashboardFragmentDirections.actionDashboardFragmentToUserProfileFragment(User)
                 findNavController().navigate(R.id.action_dashboardFragment_to_userProfileFragment)
             }
+
+            ivSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_dashboardFragment_to_doctorSearchFragment)
+            }
         }
     }
 
