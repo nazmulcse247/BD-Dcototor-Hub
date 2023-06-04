@@ -51,17 +51,19 @@
         app:layout_constraintTop_toBottomOf="@+id/ivBack">
 
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_doctor"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             app:srcCompat="@drawable/male_placeholder"
             android:layout_margin="@dimen/_8sdp"
-            android:padding="@dimen/_3sdp"
-            android:scaleType="centerCrop"
+            app:strokeWidth="2dp"
+            android:scaleType="fitCenter"
+            android:padding="@dimen/_2sdp"
+            app:strokeColor="@color/primaryColor"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20Percent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/react_image_bg"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_doctor_name"

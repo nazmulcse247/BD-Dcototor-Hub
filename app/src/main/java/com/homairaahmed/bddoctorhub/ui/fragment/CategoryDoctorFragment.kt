@@ -86,11 +86,16 @@ class CategoryDoctorFragment : Fragment() {
                     is Resource.Success -> {
                         binding.progressBar.visibility = View.GONE
                         doctorList.clear()
-                        it.data?.let { it1 -> doctorList.addAll(it1) }
-                        categoryDoctorAdapter = CategoryDoctorAdapter(requireContext(),doctorList)
-                        val layoutManager = LinearLayoutManager(requireContext())
-                        binding.rvCategoryDoctor.layoutManager = layoutManager
-                        binding.rvCategoryDoctor.adapter = categoryDoctorAdapter
+                        if (it.data!!.isNotEmpty()) {
+                            categoryDoctorAdapter = CategoryDoctorAdapter(requireContext(),it.data)
+                            val layoutManager = LinearLayoutManager(requireContext())
+                            binding.rvCategoryDoctor.layoutManager = layoutManager
+                            binding.rvCategoryDoctor.adapter = categoryDoctorAdapter
+                        }
+                        else {
+                            binding.tvNoDoctorFound.visibility = View.VISIBLE
+                        }
+
                     }
                 }
             }

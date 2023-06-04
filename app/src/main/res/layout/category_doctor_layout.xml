@@ -9,13 +9,16 @@
     android:padding="@dimen/_5sdp">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_doctor"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_60sdp"
-        android:background="@drawable/circular_image_bg"
-        android:padding="@dimen/_4sdp"
         android:src="@drawable/male_placeholder"
+        app:strokeWidth="2dp"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/_2sdp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+        app:strokeColor="@color/primaryColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
