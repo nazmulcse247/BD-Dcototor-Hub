@@ -46,10 +46,6 @@ class DoctorDetailsFragment : Fragment() {
 
         initView()
         setOnclickListener()
-
-
-
-
     }
 
     private fun setOnclickListener() {

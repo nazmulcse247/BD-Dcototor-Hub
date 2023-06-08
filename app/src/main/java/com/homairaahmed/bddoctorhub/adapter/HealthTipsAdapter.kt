@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.data.HealthTips
 import com.homairaahmed.bddoctorhub.databinding.HealthTipsLayoutBinding
+import com.homairaahmed.bddoctorhub.ui.fragment.HealthTipsFragmentDirections
 
 class HealthTipsAdapter()  : RecyclerView.Adapter<HealthTipsAdapter.HealthTipsViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HealthTipsViewHolder {
@@ -48,6 +50,10 @@ class HealthTipsAdapter()  : RecyclerView.Adapter<HealthTipsAdapter.HealthTipsVi
                     tvHealthTipsTitle.text = title
                     tvHealthTipsPublishDate.text = publised
                     tvHealthTipsContent.text = content
+                    itemView.setOnClickListener {
+                        val action = HealthTipsFragmentDirections.actionHealthTipsFragmentToHealthTipsDetailsFragment(healthTips)
+                        it.findNavController().navigate(action)
+                    }
                 }
             }
         }

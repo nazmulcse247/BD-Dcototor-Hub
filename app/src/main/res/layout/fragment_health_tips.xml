@@ -46,6 +46,7 @@
         android:id="@+id/rvHealthTips"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        tools:listitem="@layout/health_tips_layout"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlCategoryDoctor"

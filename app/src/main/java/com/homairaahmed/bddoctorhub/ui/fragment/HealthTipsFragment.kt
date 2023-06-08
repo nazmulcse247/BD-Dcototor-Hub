@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.adapter.CategoryDoctorAdapter
@@ -41,6 +42,7 @@ class HealthTipsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnClickListener()
         getHealthTipsUIObserver()
 
     }
@@ -72,6 +74,14 @@ class HealthTipsFragment : Fragment() {
 
                     }
                 }
+            }
+        }
+    }
+
+    private fun setOnClickListener() {
+        binding.apply {
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }

@@ -197,5 +197,19 @@
         android:id="@+id/healthTipsFragment"
         android:name="com.homairaahmed.bddoctorhub.ui.fragment.HealthTipsFragment"
         android:label="fragment_health_tips"
-        tools:layout="@layout/fragment_health_tips" />
+        tools:layout="@layout/fragment_health_tips" >
+
+        <action
+            android:id="@+id/action_healthTipsFragment_to_healthTipsDetailsFragment"
+            app:destination="@id/healthTipsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/healthTipsDetailsFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.HealthTipsDetailsFragment"
+        android:label="fragment_health_tips_details"
+        tools:layout="@layout/fragment_health_tips_details" >
+        <argument
+            android:name="health_tips"
+            app:argType="com.homairaahmed.bddoctorhub.data.HealthTips" />
+    </fragment>
 </navigation>
