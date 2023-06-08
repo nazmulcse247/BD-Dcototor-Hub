@@ -1,41 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_180sdp"
-    android:layout_height="@dimen/_120sdp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/_5sdp"
-    app:cardCornerRadius="@dimen/_5sdp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_health_tips"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_health_tips_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            tools:text="Grandparenting: Ready to move for family?"
-            android:fontFamily="@font/roboto_regular"
-            android:textStyle="bold"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="@color/white"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+    android:background="@drawable/card_bg"
+    android:padding="@dimen/_6sdp">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_health_tips"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/placeholder"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20Percent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-</com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_health_tips_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Tooth loss truth: It’s no longer"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/_6sdp"
+        app:layout_constraintStart_toEndOf="@id/iv_health_tips"
+        app:layout_constraintTop_toTopOf="@+id/iv_health_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:singleLine="true"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_health_tips_publish_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Published on 12/12/2020"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_health_tips_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_health_tips_title"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_health_tips_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Tooth loss truth: It’s no longer as inevitable as it once was. How to keep your teeth longer—wisdom courtesy of the latest research."
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_health_tips_publish_date"
+        app:layout_constraintStart_toStartOf="@+id/tv_health_tips_publish_date"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

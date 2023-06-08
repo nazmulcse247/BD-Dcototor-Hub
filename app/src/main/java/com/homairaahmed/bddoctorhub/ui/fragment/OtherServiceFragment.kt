@@ -21,14 +21,9 @@ import com.homairaahmed.bddoctorhub.viewmodel.OtherServiceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OtherServiceFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class OtherServiceFragment : Fragment() {
+
 
     private lateinit var binding: FragmentOtherServiceBinding
     private var context : Context? = null

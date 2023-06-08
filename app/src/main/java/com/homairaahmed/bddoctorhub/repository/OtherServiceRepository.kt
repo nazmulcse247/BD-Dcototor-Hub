@@ -2,10 +2,12 @@ package com.homairaahmed.bddoctorhub.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.homairaahmed.bddoctorhub.data.Doctor
+import com.homairaahmed.bddoctorhub.data.HealthTips
 import com.homairaahmed.bddoctorhub.data.Hospital
 import com.homairaahmed.bddoctorhub.data.Icu
 import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.utils.Constrant.Companion.DOCTOR
+import com.homairaahmed.bddoctorhub.utils.Constrant.Companion.HEALTH_TIPS
 import com.homairaahmed.bddoctorhub.utils.Constrant.Companion.HOSPITAL
 import com.homairaahmed.bddoctorhub.utils.Constrant.Companion.HOSPITALCODE
 import com.homairaahmed.bddoctorhub.utils.Constrant.Companion.ICU
@@ -67,6 +69,24 @@ class OtherServiceRepository @Inject constructor(){
 
         // Emit success state with data
         emit(Resource.Success(icu))
+
+    }.catch {
+        // If exception is thrown, emit failed state along with message.
+        emit(Resource.Error(it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
+    fun getHealthTips() = flow<Resource<List<HealthTips>>> {
+
+        val categoryCollection = fireStoreInstance.collection(HEALTH_TIPS)
+
+        // Emit loading state
+        emit(Resource.Loading())
+
+        val snapshot = categoryCollection.get().await()
+        val healthTips = snapshot.toObjects(HealthTips::class.java)
+
+        // Emit success state with data
+        emit(Resource.Success(healthTips))
 
     }.catch {
         // If exception is thrown, emit failed state along with message.

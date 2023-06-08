@@ -16,4 +16,6 @@ class OtherServiceViewModel @Inject constructor(private val otherServiceReposito
     fun getCategoryDoctor() = otherServiceRepository.getCategoryDoctor(hospitalName.value)
 
     fun getIcu() = otherServiceRepository.getIcu()
+
+    fun getHealthTips() = otherServiceRepository.getHealthTips()
 }

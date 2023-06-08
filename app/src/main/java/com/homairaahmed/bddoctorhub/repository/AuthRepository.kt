@@ -28,7 +28,7 @@ constructor() {
         }
     }
 
-    fun register(email: String, password: String, user: User): Flow<Resource<FirebaseUser>> = flow {
+    fun  register(email: String, password: String, user: User): Flow<Resource<FirebaseUser>> = flow {
         emit(Resource.Loading())
 
         try {

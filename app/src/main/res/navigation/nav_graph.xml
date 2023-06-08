@@ -90,6 +90,13 @@
         <action
             android:id="@+id/action_dashboardFragment_to_doctorSearchFragment"
             app:destination="@id/doctorSearchFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_healthTipsFragment"
+            app:destination="@id/healthTipsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
@@ -186,4 +193,9 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/healthTipsFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.HealthTipsFragment"
+        android:label="fragment_health_tips"
+        tools:layout="@layout/fragment_health_tips" />
 </navigation>

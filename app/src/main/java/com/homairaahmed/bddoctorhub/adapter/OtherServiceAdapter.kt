@@ -57,6 +57,11 @@ class OtherServiceAdapter(
                     return@setOnClickListener
                 }
 
+                else if (otherService.serviceId.equals("healthcare102")){
+                    it.findNavController().navigate(R.id.action_dashboardFragment_to_healthTipsFragment)
+                    return@setOnClickListener
+                }
+
 
             }
         }
