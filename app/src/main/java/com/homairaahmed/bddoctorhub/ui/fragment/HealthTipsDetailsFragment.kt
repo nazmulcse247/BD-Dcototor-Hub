@@ -1,6 +1,7 @@
 package com.homairaahmed.bddoctorhub.ui.fragment
 
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,8 @@ import com.homairaahmed.bddoctorhub.databinding.FragmentHealthTipsDetailsBinding
  */
 class HealthTipsDetailsFragment : Fragment() {
 
-    private val args by navArgs<HealthTipsDetailsFragmentArgs>()
     private lateinit var binding : FragmentHealthTipsDetailsBinding
+    private val args by navArgs<HealthTipsDetailsFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,15 @@ class HealthTipsDetailsFragment : Fragment() {
         val doctorTips = args.healthTips
         binding.apply {
             Glide.with(requireContext()).load(doctorTips.image).into(this.ivHealthTipsImage)
-            tvHealthTipsContent.text = doctorTips.content
+            convertHtmlToString(doctorTips.content)
+        }
+    }
+
+    fun convertHtmlToString(html: String) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            binding.tvHealthTipsContent.setText(Html.fromHtml(html,Html.FROM_HTML_MODE_LEGACY))
+        } else {
+            binding.tvHealthTipsContent.setText(Html.fromHtml(html))
         }
     }
 
