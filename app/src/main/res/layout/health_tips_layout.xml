@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/_5sdp"
-    android:background="@drawable/card_bg"
-    android:padding="@dimen/_6sdp">
+    android:elevation="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_6sdp">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_5sdp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_health_tips"
@@ -56,12 +60,10 @@
         android:textSize="@dimen/_10ssp"
         android:layout_marginTop="@dimen/_5sdp"
         android:maxLines="2"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_health_tips_publish_date"
         app:layout_constraintStart_toStartOf="@+id/tv_health_tips_publish_date"
         />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

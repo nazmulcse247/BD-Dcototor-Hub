@@ -49,7 +49,7 @@ class HealthTipsAdapter()  : RecyclerView.Adapter<HealthTipsAdapter.HealthTipsVi
                         R.drawable.placeholder)).into(ivHealthTips)
                     tvHealthTipsTitle.text = title
                     tvHealthTipsPublishDate.text = publised
-                    //tvHealthTipsContent.text = content
+                    tvHealthTipsContent.text = writer
                     itemView.setOnClickListener {
                         val action = HealthTipsFragmentDirections.actionHealthTipsFragmentToHealthTipsDetailsFragment(healthTips)
                         it.findNavController().navigate(action)

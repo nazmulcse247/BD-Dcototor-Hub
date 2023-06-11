@@ -9,10 +9,11 @@ data class HealthTips(
     val image: String,
     val publised : String,
     val title: String,
-    val content : String
+    val content : String,
+    val writer : String
 
 
 
 ) : Parcelable{
-    constructor() : this("", "", "", "", "")
+    constructor() : this("", "", "", "", "", "")
 }
