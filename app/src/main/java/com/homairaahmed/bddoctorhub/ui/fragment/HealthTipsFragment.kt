@@ -10,9 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.homairaahmed.bddoctorhub.R
-import com.homairaahmed.bddoctorhub.adapter.CategoryDoctorAdapter
 import com.homairaahmed.bddoctorhub.adapter.HealthTipsAdapter
 import com.homairaahmed.bddoctorhub.data.Resource
 import com.homairaahmed.bddoctorhub.databinding.FragmentHealthTipsBinding

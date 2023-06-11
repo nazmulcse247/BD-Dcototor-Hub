@@ -1,9 +1,9 @@
 package com.homairaahmed.bddoctorhub.data
 
 data class Ambulance(
-    val ambulanceId: String,
-    val ambulanceName: String,
-    val ambulanceNumber: String,
+    val name: String,
+    val location: String,
+    val number: String,
 
 ) {
     constructor() : this("", "", "")

@@ -62,6 +62,10 @@ class OtherServiceAdapter(
                     return@setOnClickListener
                 }
 
+                else if (otherService.serviceId.equals("ambulanceservice101")){
+                    it.findNavController().navigate(R.id.action_dashboardFragment_to_ambulanceFragment)
+                    return@setOnClickListener
+                }
 
 
             }

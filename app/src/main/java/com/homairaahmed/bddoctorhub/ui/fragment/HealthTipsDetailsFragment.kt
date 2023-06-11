@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
@@ -37,13 +38,23 @@ class HealthTipsDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnClcikListener()
         initView()
+    }
+
+    private fun setOnClcikListener() {
+        binding.apply {
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun initView() {
         val doctorTips = args.healthTips
         binding.apply {
-            Glide.with(requireContext()).load(doctorTips.image).into(this.ivHealthTipsImage)
+            tvOtherServiceName.text = doctorTips.title
+            Glide.with(requireContext()).load(doctorTips.image).into(this.ivHealthTips)
             convertHtmlToString(doctorTips.content)
         }
     }

@@ -97,6 +97,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"/>
+        <action
+            android:id="@+id/action_dashboardFragment_to_ambulanceFragment"
+            app:destination="@id/ambulanceFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
     </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
@@ -212,4 +219,9 @@
             android:name="health_tips"
             app:argType="com.homairaahmed.bddoctorhub.data.HealthTips" />
     </fragment>
+    <fragment
+        android:id="@+id/ambulanceFragment"
+        android:name="com.homairaahmed.bddoctorhub.ui.fragment.AmbulanceFragment"
+        android:label="fragment_ambulance"
+        tools:layout="@layout/fragment_ambulance" />
 </navigation>

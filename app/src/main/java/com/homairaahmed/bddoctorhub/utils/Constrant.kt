@@ -14,6 +14,7 @@ class Constrant {
         const val HOSPITALCODE = "hospitalCode"
         const val ICU = "Icu"
         const val HEALTH_TIPS = "Health Tips"
+        const val AMBULANCE = "Ambulance"
     }
 
 
