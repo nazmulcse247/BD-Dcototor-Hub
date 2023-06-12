@@ -1,9 +1,11 @@
 package com.homairaahmed.bddoctorhub.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,18 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.homairaahmed.bddoctorhub.R
 import com.homairaahmed.bddoctorhub.databinding.FragmentDoctorDetailsBinding
+import com.homairaahmed.bddoctorhub.network.ApiClient
+import com.homairaahmed.bddoctorhub.network.ApiService
 import com.homairaahmed.bddoctorhub.utils.DialerUtils.Companion.dailNumber
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.jsoup.Jsoup
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Url
 
 
 /**
@@ -25,6 +38,7 @@ class DoctorDetailsFragment : Fragment() {
 
     private lateinit var binding : FragmentDoctorDetailsBinding
     private val args by navArgs<DoctorDetailsFragmentArgs>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +58,29 @@ class DoctorDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkScrapping()
         initView()
         setOnclickListener()
+    }
+
+    private fun checkScrapping() {
+
+        val api = ApiClient.getRetrofit().create(ApiService::class.java)
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = api.getScapeData("prof-dr-syed-atiqul-haq/")
+            if (response.isSuccessful && response.body() != null) {
+                Log.d(TAG, "checkScrapping: " + response.body().toString())
+                val htmlDoc = Jsoup.parse(response.body())
+                val elements = htmlDoc.select(".entry-content p strong a")
+                Log.d(TAG, "checkScrapping: "+Html.fromHtml(elements.html().toString()).toString())
+                //Html.fromHtml(elements.html()).toString()
+                html2text(elements.html()).toString()
+
+
+
+            }
+        }
+
     }
 
     private fun setOnclickListener() {
@@ -84,6 +119,7 @@ class DoctorDetailsFragment : Fragment() {
     }
 
 
+
     fun showSharingDialogAsKotlin(text: String) {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
@@ -92,5 +128,16 @@ class DoctorDetailsFragment : Fragment() {
         startActivity(Intent.createChooser(intent, "Share with:"))
     }
 
+    fun html2text(html: String?): String? {
+        Log.d(TAG, "html2text: "+Jsoup.parse(html).text())
+        return Jsoup.parse(html).text()
+    }
 
+
+
+}
+
+interface apiService {
+    @GET
+    suspend fun getDoctorDetails(@Url url: String): Response<String>
 }

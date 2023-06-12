@@ -3,6 +3,7 @@ package com.homairaahmed.bddoctorhub.utils
 class Constrant {
 
     companion object {
+        const val BASE_URL = "https://www.doctorbangladesh.com/"
         const val USER_AUTH_PREF = "user_auth"
         const val CATEGORY = "Category"
         const val DOCTOR = "Doctor"
