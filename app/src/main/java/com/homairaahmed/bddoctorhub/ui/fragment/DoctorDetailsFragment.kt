@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -18,6 +19,7 @@ import com.homairaahmed.bddoctorhub.databinding.FragmentDoctorDetailsBinding
 import com.homairaahmed.bddoctorhub.network.ApiClient
 import com.homairaahmed.bddoctorhub.network.ApiService
 import com.homairaahmed.bddoctorhub.utils.DialerUtils.Companion.dailNumber
+import com.homairaahmed.bddoctorhub.utils.NetworkUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,20 +67,22 @@ class DoctorDetailsFragment : Fragment() {
 
     private fun checkScrapping() {
 
-        val api = ApiClient.getRetrofit().create(ApiService::class.java)
-        CoroutineScope(Dispatchers.IO).launch {
-            val response = api.getScapeData("prof-dr-syed-atiqul-haq/")
-            if (response.isSuccessful && response.body() != null) {
-                Log.d(TAG, "checkScrapping: " + response.body().toString())
-                val htmlDoc = Jsoup.parse(response.body())
-                val elements = htmlDoc.select(".entry-content p strong a")
-                Log.d(TAG, "checkScrapping: "+Html.fromHtml(elements.html().toString()).toString())
-                //Html.fromHtml(elements.html()).toString()
-                html2text(elements.html()).toString()
+        if (NetworkUtils.isInternetAvailable(requireContext())) {
+            val api = ApiClient.getRetrofit().create(ApiService::class.java)
+            CoroutineScope(Dispatchers.IO).launch {
+                val response = api.getScapeData("prof-dr-syed-atiqul-haq/")
+                if (response.isSuccessful && response.body() != null) {
+                    Log.d(TAG, "checkScrapping: " + response.body().toString())
+                    val htmlDoc = Jsoup.parse(response.body())
+                    val elements = htmlDoc.select(".entry-content p strong a")
+                    Log.d(TAG, "checkScrapping: "+Html.fromHtml(elements.html().toString()).toString())
+                    //Html.fromHtml(elements.html()).toString()
+                    html2text(elements.html()).toString()
 
-
-
+                }
             }
+        } else {
+            Toast.makeText(requireContext(), "No Internet Connection", Toast.LENGTH_SHORT).show()
         }
 
     }
